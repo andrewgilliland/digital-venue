@@ -250,15 +250,15 @@ function drawField(viewport: Container, venue: Venue) {
   viewport.addChild(field);
 
   const markings = new Graphics();
-  const inset = 13;
+  const inset = 12;
   for (let index = 1; index < 12; index += 1) {
-    const y = top + (height * index) / 12;
-    markings.moveTo(left + inset, y).lineTo(left + width - inset, y);
+    const x = left + (width * index) / 12;
+    markings.moveTo(x, top + inset).lineTo(x, top + height - inset);
   }
-  markings.stroke({ color: 0xf4f5ee, alpha: 0.48, width: 1.4 });
+  markings.stroke({ color: 0xf4f5ee, alpha: 0.5, width: 1.5 });
   markings
-    .moveTo(left + inset, venue.center.y)
-    .lineTo(left + width - inset, venue.center.y)
+    .moveTo(venue.center.x, top + inset)
+    .lineTo(venue.center.x, top + height - inset)
     .stroke({ color: 0xffffff, alpha: 0.72, width: 2 });
   viewport.addChild(markings);
 

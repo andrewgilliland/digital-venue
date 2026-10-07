@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 760" role="img" aria-labelledby="title description">
+  <title id="title">Digital Venue Soldier Field overview reference</title>
+  <desc id="description">An original top-down schematic showing an oval stadium footprint, three sectioned seating tiers, and a horizontal green football field.</desc>
+  <defs>
+    <pattern id="field-stripes" width="31.67" height="205" patternUnits="userSpaceOnUse">
+      <rect width="15.83" height="205" fill="#78905f" />
+      <rect x="15.83" width="15.84" height="205" fill="#667f50" />
+    </pattern>
+  </defs>
+  <rect width="1000" height="760" fill="#f4f5f7" />
+  <ellipse cx="500" cy="389" rx="482" ry="351" fill="#bfc4ce" opacity=".32" />
+  <ellipse cx="500" cy="380" rx="478" ry="348" fill="#fafafa" stroke="#c8cbd4" stroke-width="5" />
+
+  <ellipse cx="500" cy="380" rx="460" ry="330" fill="#dedfe3" stroke="#ffffff" stroke-width="3" />
+  <ellipse cx="500" cy="380" rx="360" ry="250" fill="#f7f7f8" stroke="#c9cbd1" stroke-width="2" />
+
+  <ellipse cx="500" cy="380" rx="355" ry="246" fill="#e2e3e6" stroke="#ffffff" stroke-width="3" />
+  <ellipse cx="500" cy="380" rx="270" ry="174" fill="#f8f8f9" stroke="#c9cbd1" stroke-width="2" />
+
+  <ellipse cx="500" cy="380" rx="265" ry="168" fill="#e8e9eb" stroke="#ffffff" stroke-width="3" />
+  <ellipse cx="500" cy="380" rx="210" ry="120" fill="#fbfbfc" stroke="#c9cbd1" stroke-width="2" />
+
+  <g fill="none" stroke="#b9bbc2" stroke-width="2" opacity=".9">
+    <path d="M860 380 L978 380 M812 255 L914 206 M680 163 L739 79 M500 130 L500 32 M320 163 L261 79 M188 255 L86 206 M140 380 L22 380 M188 505 L86 554 M320 597 L261 681 M500 630 L500 728 M680 597 L739 681 M812 505 L914 554" />
+    <path d="M770 380 L855 380 M734 293 L805 252 M635 230 L670 166 M500 206 L500 134 M365 230 L330 166 M266 293 L195 252 M230 380 L145 380 M266 467 L195 508 M365 530 L330 594 M500 554 L500 626 M635 530 L670 594 M734 467 L805 508" />
+    <path d="M710 380 L765 380 M689 320 L734 294 M560 263 L632 214 M500 260 L500 212 M440 263 L368 214 M311 320 L266 294 M290 380 L235 380 M311 440 L266 466 M440 497 L368 546 M500 500 L500 548 M560 497 L632 546 M689 440 L734 466" />
+  </g>
+
+  <g fill="#737780" font-family="Arial, sans-serif" font-size="13" font-weight="600" letter-spacing="2">
+    <text x="500" y="66" text-anchor="middle">UPPER DECK</text>
+    <text x="500" y="145" text-anchor="middle">LOWER LEVEL</text>
+    <text x="500" y="228" text-anchor="middle">CLUB LEVEL</text>
+  </g>
+
+  <rect x="310" y="277.5" width="380" height="205" rx="9" fill="#627c4d" stroke="#ffffff" stroke-width="7" />
+  <rect x="316" y="284" width="368" height="192" rx="5" fill="url(#field-stripes)" />
+  <g stroke="#f4f5ed" stroke-width="1.4" opacity=".66">
+    <path d="M340 291 V469 M371.7 291 V469 M403.3 291 V469 M435 291 V469 M466.7 291 V469 M498.3 291 V469 M530 291 V469 M561.7 291 V469 M593.3 291 V469 M625 291 V469 M656.7 291 V469" />
+    <path d="M321 380 H679" stroke-width="2" opacity=".8" />
+  </g>
+  <g fill="#f7f7f0" font-family="Arial, sans-serif" font-size="11" font-weight="700" letter-spacing="3">
+    <text x="500" y="303" text-anchor="middle">FIELD</text>
+    <text x="500" y="469" text-anchor="middle">VISITORS</text>
+  </g>
+  <text x="500" y="744" text-anchor="middle" fill="#7a7d84" font-family="Arial, sans-serif" font-size="12" letter-spacing="1.5">ORIGINAL SCHEMATIC REFERENCE · NOT SURVEY-GRADE GEOMETRY</text>
+</svg>

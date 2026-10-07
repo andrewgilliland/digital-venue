@@ -14,8 +14,8 @@
     "y": 380
   },
   "field": {
-    "width": 322,
-    "height": 462,
+    "width": 380,
+    "height": 205,
     "label": "FIELD"
   },
   "decks": [
@@ -23,10 +23,10 @@
       "id": "upper",
       "name": "Upper Deck",
       "shortName": "Upper",
-      "innerRadiusX": 364,
-      "innerRadiusY": 358,
-      "outerRadiusX": 480,
-      "outerRadiusY": 372,
+      "innerRadiusX": 360,
+      "innerRadiusY": 250,
+      "outerRadiusX": 478,
+      "outerRadiusY": 348,
       "sections": [
         {
           "id": "upper-101",
@@ -106,10 +106,10 @@
       "id": "lower",
       "name": "100 Level",
       "shortName": "100",
-      "innerRadiusX": 284,
-      "innerRadiusY": 344,
-      "outerRadiusX": 360,
-      "outerRadiusY": 354,
+      "innerRadiusX": 270,
+      "innerRadiusY": 174,
+      "outerRadiusX": 355,
+      "outerRadiusY": 246,
       "sections": [
         {
           "id": "lower-201",
@@ -189,10 +189,10 @@
       "id": "club",
       "name": "Club Level",
       "shortName": "Club",
-      "innerRadiusX": 232,
-      "innerRadiusY": 322,
-      "outerRadiusX": 280,
-      "outerRadiusY": 340,
+      "innerRadiusX": 210,
+      "innerRadiusY": 120,
+      "outerRadiusX": 265,
+      "outerRadiusY": 168,
       "sections": [
         {
           "id": "club-301",
