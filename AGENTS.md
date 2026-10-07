@@ -2,7 +2,7 @@
 
 ### Issue tracker
 
-Work is tracked in GitHub Issues using the `gh` CLI. See `docs/agents/issue-tracker.md`.
+Work is tracked in GitHub Issues using the `gh` CLI. For issue implementation and pull-request workflow, follow `docs/agents/issue-tracker.md`.
 
 ### Domain docs
 
