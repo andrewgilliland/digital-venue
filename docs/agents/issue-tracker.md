@@ -17,7 +17,8 @@ Infer the repo from `git remote -v`; `gh` does this automatically when run insid
 ## Issue implementation and pull requests
 
 - Implement an issue on a branch based on `main`; do not make issue changes directly on `main`.
-- Open a pull request when the issue's acceptance criteria are complete and the relevant checks pass.
+- When the issue's acceptance criteria are complete and the relevant checks pass, commit the issue changes on that branch and push the branch to `origin`.
+- Open a pull request from the pushed branch. Never push issue work directly to `main`.
 - Link the pull request to the implemented issue with `Closes #<issue-number>` so GitHub closes that issue when the pull request is merged. For a child issue, close the child issue, not its parent.
 - Include a concise summary and the checks run in the pull request description. Leave the pull request open for review; do not merge unless the user explicitly asks.
 
