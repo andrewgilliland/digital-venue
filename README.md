@@ -29,4 +29,4 @@ React will own product state and accessible DOM controls. PixiJS will own the ma
 
 Venue geometry and event inventory are designed to live in separate local JSON files and be validated at runtime. The current venue overview uses validated local venue geometry; event inventory will be added with the offer-browsing slice.
 
-The [Soldier Field overview reference](docs/references/soldier-field-overview.md) records the visual cues used for the schematic map.
+The [supplied Soldier Field seating map](docs/references/soldier-field.svg) is the canonical visual reference for the schematic map. See the [reference notes](docs/references/soldier-field-overview.md) for usage guidance.
