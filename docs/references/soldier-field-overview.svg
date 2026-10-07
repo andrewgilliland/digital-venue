@@ -1,46 +1,238 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 760" role="img" aria-labelledby="title description">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 768" role="img" aria-labelledby="title description">
   <title id="title">Digital Venue Soldier Field overview reference</title>
-  <desc id="description">An original top-down schematic showing an oval stadium footprint, three sectioned seating tiers, and a horizontal green football field.</desc>
+  <desc id="description">An original top-down schematic with an open layered north grandstand, asymmetric side stands, a broken south bowl, and a horizontal striped soccer field.</desc>
   <defs>
-    <pattern id="field-stripes" width="31.67" height="205" patternUnits="userSpaceOnUse">
-      <rect width="15.83" height="205" fill="#78905f" />
-      <rect x="15.83" width="15.84" height="205" fill="#667f50" />
+    <pattern id="pitch-stripes" width="32" height="218" patternUnits="userSpaceOnUse">
+      <rect width="16" height="218" fill="#65843f" />
+      <rect x="16" width="16" height="218" fill="#547534" />
     </pattern>
+    <filter id="bowl-shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#9395a1" flood-opacity=".18" />
+    </filter>
+    <style>
+      .seat { fill: #e8e8ea; stroke: #b8b9bd; stroke-width: 1.5; }
+      .seat-dark { fill: #dedee1; stroke: #b2b3b7; stroke-width: 1.6; }
+      .section-label { fill: #737477; font: 15px Arial, sans-serif; text-anchor: middle; dominant-baseline: middle; }
+      .small-label { fill: #737477; font: 13px Arial, sans-serif; text-anchor: middle; dominant-baseline: middle; }
+      .micro-label { fill: #737477; font: 11px Arial, sans-serif; text-anchor: middle; dominant-baseline: middle; }
+      .supporter-label { fill: #737477; font: 9px Arial, sans-serif; text-anchor: middle; dominant-baseline: middle; }
+      .venue-label { fill: #77787b; font: 11px Arial, sans-serif; letter-spacing: .3px; text-anchor: middle; }
+    </style>
   </defs>
-  <rect width="1000" height="760" fill="#f4f5f7" />
-  <ellipse cx="500" cy="389" rx="482" ry="351" fill="#bfc4ce" opacity=".32" />
-  <ellipse cx="500" cy="380" rx="478" ry="348" fill="#fafafa" stroke="#c8cbd4" stroke-width="5" />
 
-  <ellipse cx="500" cy="380" rx="460" ry="330" fill="#dedfe3" stroke="#ffffff" stroke-width="3" />
-  <ellipse cx="500" cy="380" rx="360" ry="250" fill="#f7f7f8" stroke="#c9cbd1" stroke-width="2" />
+  <rect width="1000" height="768" fill="#f7f7f9" />
+  <path d="M500 42 C744 42 887 105 938 221 C970 293 972 474 935 556 C879 679 739 743 500 754 C261 743 121 679 65 556 C28 474 30 293 62 221 C113 105 256 42 500 42 Z" fill="#fff" stroke="#c9cada" stroke-width="5" filter="url(#bowl-shadow)" />
 
-  <ellipse cx="500" cy="380" rx="355" ry="246" fill="#e2e3e6" stroke="#ffffff" stroke-width="3" />
-  <ellipse cx="500" cy="380" rx="270" ry="174" fill="#f8f8f9" stroke="#c9cbd1" stroke-width="2" />
-
-  <ellipse cx="500" cy="380" rx="265" ry="168" fill="#e8e9eb" stroke="#ffffff" stroke-width="3" />
-  <ellipse cx="500" cy="380" rx="210" ry="120" fill="#fbfbfc" stroke="#c9cbd1" stroke-width="2" />
-
-  <g fill="none" stroke="#b9bbc2" stroke-width="2" opacity=".9">
-    <path d="M860 380 L978 380 M812 255 L914 206 M680 163 L739 79 M500 130 L500 32 M320 163 L261 79 M188 255 L86 206 M140 380 L22 380 M188 505 L86 554 M320 597 L261 681 M500 630 L500 728 M680 597 L739 681 M812 505 L914 554" />
-    <path d="M770 380 L855 380 M734 293 L805 252 M635 230 L670 166 M500 206 L500 134 M365 230 L330 166 M266 293 L195 252 M230 380 L145 380 M266 467 L195 508 M365 530 L330 594 M500 554 L500 626 M635 530 L670 594 M734 467 L805 508" />
-    <path d="M710 380 L765 380 M689 320 L734 294 M560 263 L632 214 M500 260 L500 212 M440 263 L368 214 M311 320 L266 294 M290 380 L235 380 M311 440 L266 466 M440 497 L368 546 M500 500 L500 548 M560 497 L632 546 M689 440 L734 466" />
+  <!-- North club and suite ribbons -->
+  <g>
+    <path class="seat" d="M190 164 L238 133 L246 151 L199 180 Z" />
+    <path class="seat" d="M199 139 L262 108 L268 124 L207 154 Z" />
+    <path class="seat" d="M218 113 L282 86 L286 100 L225 127 Z" />
+    <path class="seat" d="M754 151 L762 133 L810 164 L801 180 Z" />
+    <path class="seat" d="M732 124 L738 108 L801 139 L793 154 Z" />
+    <path class="seat" d="M714 100 L718 86 L782 113 L775 127 Z" />
+    <path class="seat" d="M305 78 L303 66 Q500 31 697 66 L695 78 Q500 48 305 78 Z" />
+    <path class="seat" d="M286 100 L282 86 Q500 48 718 86 L714 100 Q500 67 286 100 Z" />
+    <path class="seat" d="M268 124 L262 108 Q500 67 738 108 L732 124 Q500 87 268 124 Z" />
+    <path class="seat" d="M246 151 L238 133 Q500 89 762 133 L754 151 Q500 110 246 151 Z" />
+    <g fill="none" stroke="#b0b1b6" stroke-width="1">
+      <path d="M347 59 L349 75 M393 52 L394 70 M442 47 L443 65 M497 44 L497 63 M552 47 L551 65 M601 52 L600 70 M647 59 L645 75" />
+      <path d="M329 77 L332 93 M378 69 L380 86 M430 63 L431 80 M486 60 L486 77 M543 62 L542 79 M597 68 L595 85 M647 76 L644 93 M689 84 L686 98" />
+      <path d="M306 99 L310 117 M358 90 L361 108 M414 82 L416 101 M474 78 L475 97 M535 80 L534 99 M594 86 L591 105 M649 95 L646 113 M700 105 L696 121" />
+      <path d="M282 126 L287 145 M338 115 L342 136 M398 106 L401 128 M462 101 L463 124 M527 102 L526 125 M591 109 L588 131 M651 119 L647 140 M707 132 L702 148" />
+    </g>
+    <g class="micro-label">
+      <text x="356" y="66">C9</text><text x="416" y="59">C12</text><text x="464" y="55">C14</text><text x="505" y="54">C16</text><text x="570" y="58">C19</text><text x="612" y="64">C21</text>
+      <text x="210" y="145">C1</text><text x="238" y="119">C3</text><text x="272" y="101">C5</text><text x="318" y="91">C7</text><text x="673" y="91">C24</text><text x="763" y="119">C27</text>
+      <text x="217" y="164">A6</text><text x="286" y="133">A9</text><text x="368" y="117">A13</text><text x="432" y="109">A16</text><text x="514" y="105">A20</text><text x="598" y="113">A24</text>
+    </g>
+    <text class="micro-label" x="763" y="135" transform="rotate(17 763 135)">PRESSBOX</text>
   </g>
 
-  <g fill="#737780" font-family="Arial, sans-serif" font-size="13" font-weight="600" letter-spacing="2">
-    <text x="500" y="66" text-anchor="middle">UPPER DECK</text>
-    <text x="500" y="145" text-anchor="middle">LOWER LEVEL</text>
-    <text x="500" y="228" text-anchor="middle">CLUB LEVEL</text>
+  <!-- North 300 level -->
+  <g>
+    <path class="seat-dark" d="M263 162 L319 143 L331 199 L285 217 Z" />
+    <path class="seat" d="M323 143 L381 132 L386 193 L335 200 Z" />
+    <path class="seat" d="M386 132 L445 126 L447 190 L391 193 Z" />
+    <path class="seat" d="M451 126 L503 124 L503 188 L453 189 Z" />
+    <path class="seat" d="M509 124 L561 127 L557 190 L509 188 Z" />
+    <path class="seat" d="M567 128 L625 136 L616 195 L563 190 Z" />
+    <path class="seat" d="M631 137 L689 151 L672 204 L622 195 Z" />
+    <path class="seat-dark" d="M695 153 L745 174 L716 222 L678 205 Z" />
+    <g fill="#fff" stroke="#c5c6ca" stroke-width="1">
+      <path d="M312 144 L324 140 L337 199 L326 202 Z" /><path d="M374 132 L387 130 L393 193 L381 195 Z" />
+      <path d="M439 125 L452 124 L458 189 L445 190 Z" /><path d="M497 123 L510 123 L515 189 L503 189 Z" />
+      <path d="M555 126 L568 127 L568 191 L556 191 Z" /><path d="M618 133 L632 136 L627 197 L615 195 Z" />
+      <path d="M681 147 L695 152 L683 208 L671 204 Z" />
+    </g>
+    <g class="small-label">
+      <text x="299" y="180">302</text><text x="354" y="165">304</text><text x="416" y="157">306</text><text x="479" y="153">308</text>
+      <text x="539" y="154">310</text><text x="596" y="161">312</text><text x="655" y="174">314</text>
+    </g>
   </g>
 
-  <rect x="310" y="277.5" width="380" height="205" rx="9" fill="#627c4d" stroke="#ffffff" stroke-width="7" />
-  <rect x="316" y="284" width="368" height="192" rx="5" fill="url(#field-stripes)" />
-  <g stroke="#f4f5ed" stroke-width="1.4" opacity=".66">
-    <path d="M340 291 V469 M371.7 291 V469 M403.3 291 V469 M435 291 V469 M466.7 291 V469 M498.3 291 V469 M530 291 V469 M561.7 291 V469 M593.3 291 V469 M625 291 V469 M656.7 291 V469" />
-    <path d="M321 380 H679" stroke-width="2" opacity=".8" />
+  <!-- North 200 level -->
+  <g>
+    <path class="seat" d="M271 219 L329 199 L342 255 L300 274 Z" />
+    <path class="seat" d="M335 198 L393 189 L399 247 L347 255 Z" />
+    <path class="seat" d="M399 188 L455 184 L457 242 L405 247 Z" />
+    <path class="seat" d="M462 184 L514 184 L514 240 L463 241 Z" />
+    <path class="seat" d="M520 184 L575 189 L569 247 L520 241 Z" />
+    <path class="seat" d="M581 190 L637 201 L623 256 L575 247 Z" />
+    <path class="seat" d="M644 202 L698 223 L674 275 L629 257 Z" />
+    <path class="seat" d="M704 225 L741 247 L708 292 L680 276 Z" />
+    <g class="small-label">
+      <text x="291" y="229">202</text><text x="356" y="220">204</text><text x="418" y="211">206</text><text x="482" y="207">208</text>
+      <text x="551" y="211">210</text><text x="613" y="220">212</text><text x="677" y="236">214</text><text x="718" y="257">216</text>
+    </g>
   </g>
-  <g fill="#f7f7f0" font-family="Arial, sans-serif" font-size="11" font-weight="700" letter-spacing="3">
-    <text x="500" y="303" text-anchor="middle">FIELD</text>
-    <text x="500" y="469" text-anchor="middle">VISITORS</text>
+
+  <!-- North lower level -->
+  <g>
+    <path class="seat" d="M315 267 L363 247 L373 298 L337 314 Z" />
+    <path class="seat" d="M369 247 L425 236 L430 291 L379 298 Z" />
+    <path class="seat" d="M432 235 L486 231 L487 287 L436 290 Z" />
+    <path class="seat" d="M493 231 L544 233 L542 289 L493 287 Z" />
+    <path class="seat" d="M551 234 L607 243 L599 297 L548 289 Z" />
+    <path class="seat" d="M614 245 L665 263 L649 312 L605 297 Z" />
+    <path class="seat" d="M672 266 L712 292 L684 330 L656 313 Z" />
+    <g class="section-label">
+      <text x="345" y="276">103</text><text x="399" y="265">106</text><text x="463" y="258">108</text><text x="526" y="259">111</text>
+      <text x="581" y="267">113</text><text x="638" y="280">115</text><text x="690" y="299">119</text>
+    </g>
   </g>
-  <text x="500" y="744" text-anchor="middle" fill="#7a7d84" font-family="Arial, sans-serif" font-size="12" letter-spacing="1.5">ORIGINAL SCHEMATIC REFERENCE · NOT SURVEY-GRADE GEOMETRY</text>
+
+  <!-- West side stands -->
+  <g>
+    <path class="seat-dark" d="M160 214 L218 238 L199 279 L145 267 Z" /><text class="section-label" x="184" y="245">356</text>
+    <path class="seat" d="M137 274 L200 283 L193 331 L129 329 Z" />
+    <path class="seat" d="M128 334 L193 336 L191 382 L126 382 Z" />
+    <path class="seat" d="M126 387 L191 387 L193 432 L128 435 Z" />
+    <path class="seat" d="M130 440 L194 437 L201 485 L138 495 Z" />
+    <path class="seat" d="M141 500 L202 490 L219 531 L159 556 Z" />
+    <g class="section-label"><text x="163" y="304">353</text><text x="159" y="359">352</text><text x="159" y="410">351</text><text x="166" y="467">350</text><text x="183" y="520">349</text></g>
+
+    <path class="seat" d="M220 239 L291 263 L269 307 L201 280 Z" /><text class="section-label" x="251" y="270">256</text>
+    <path class="seat" d="M199 284 L274 310 L259 348 L195 331 Z" /><text class="section-label" x="232" y="321">254</text>
+    <path class="seat" d="M195 337 L258 351 L253 388 L193 382 Z" /><text class="section-label" x="226" y="365">253</text>
+    <path class="seat" d="M193 388 L253 392 L257 429 L195 432 Z" /><text class="section-label" x="225" y="409">252</text>
+    <path class="seat" d="M196 437 L259 432 L270 470 L201 485 Z" /><text class="section-label" x="228" y="458">251</text>
+    <path class="seat" d="M203 490 L272 475 L291 516 L220 530 Z" /><text class="section-label" x="249" y="504">250</text>
+
+    <path class="seat" d="M282 308 L325 315 L326 353 L270 347 Z" /><text class="section-label" x="299" y="333">154</text>
+    <path class="seat" d="M267 352 L326 356 L326 390 L260 387 Z" /><text class="section-label" x="294" y="374">152</text>
+    <path class="seat" d="M260 393 L326 393 L326 426 L265 429 Z" /><text class="section-label" x="294" y="411">151</text>
+    <path class="seat" d="M271 433 L326 429 L326 464 L282 471 Z" /><text class="section-label" x="299" y="451">149</text>
+    <path class="seat" d="M149 514 L202 490 L220 531 L171 555 Z" /><text class="small-label" x="168" y="538">348</text>
+    <path class="seat" d="M221 535 L279 515 L313 548 L273 581 L220 563 Z" /><text class="section-label" x="264" y="543">248</text>
+    <g fill="#fff" stroke="#c5c6ca" stroke-width="1">
+      <path d="M190 318 H198 V312 H207 V318 H214 V330 H207 V336 H198 V330 H190 Z" />
+      <path d="M188 374 H196 V368 H205 V374 H212 V386 H205 V392 H196 V386 H188 Z" />
+      <path d="M189 427 H197 V421 H206 V427 H213 V439 H206 V445 H197 V439 H189 Z" />
+      <path d="M196 478 H204 V472 H213 V478 H220 V490 H213 V496 H204 V490 H196 Z" />
+    </g>
+    <text class="venue-label" x="151" y="248" transform="rotate(-73 151 248)">PARTY DECK</text>
+  </g>
+
+  <!-- East side stands and suites -->
+  <g>
+    <path class="seat" d="M712 291 L760 266 L788 306 L745 330 Z" /><text class="section-label" x="750" y="298">218</text>
+    <path class="seat" d="M746 333 L804 310 L817 350 L754 365 Z" />
+    <path class="seat" d="M756 369 L820 356 L824 394 L758 400 Z" />
+    <path class="seat" d="M758 404 L824 399 L823 438 L755 435 Z" />
+    <path class="seat" d="M753 440 L819 444 L810 482 L745 470 Z" />
+    <path class="seat" d="M741 475 L806 488 L788 527 L711 503 Z" />
+    <g class="section-label"><text x="785" y="337">321</text><text x="790" y="377">322</text><text x="792" y="418">323</text><text x="787" y="461">324</text><text x="770" y="505">325</text></g>
+
+    <path class="seat" d="M804 202 L839 172 L860 198 L825 226 Z" />
+    <path class="seat" d="M829 230 L864 201 L882 231 L846 257 Z" />
+    <path class="seat" d="M849 262 L885 238 L899 271 L862 291 Z" />
+    <path class="seat" d="M865 298 L902 280 L911 316 L873 329 Z" />
+    <path class="seat" d="M876 337 L914 326 L918 365 L880 371 Z" />
+    <path class="seat" d="M881 379 L919 376 L919 416 L881 416 Z" />
+    <path class="seat" d="M881 424 L919 425 L917 464 L879 459 Z" />
+    <path class="seat" d="M876 467 L914 474 L908 512 L869 500 Z" />
+    <g class="small-label"><text x="844" y="197">B33</text><text x="866" y="229">B35</text><text x="885" y="265">B37</text></g>
+    <text class="venue-label" x="874" y="319" transform="rotate(76 874 319)">SKYLINE SUITE</text>
+    <text class="venue-label" x="905" y="449" transform="rotate(90 905 449)">LOGE</text>
+
+    <g fill="#fff" stroke="#c5c6ca" stroke-width="1">
+      <path d="M811 322 H819 V316 H828 V322 H835 V334 H828 V340 H819 V334 H811 Z" />
+      <path d="M821 376 H829 V370 H838 V376 H845 V388 H838 V394 H829 V388 H821 Z" />
+      <path d="M821 430 H829 V424 H838 V430 H845 V442 H838 V448 H829 V442 H821 Z" />
+      <path d="M811 482 H819 V476 H828 V482 H835 V494 H828 V500 H819 V494 H811 Z" />
+    </g>
+    <path d="M711 331 H762 V371 H716 Z" fill="#cce5f4" stroke="#7ca7c1" stroke-width="2" />
+    <path d="M716 374 H764 V414 H716 Z" fill="#cce5f4" stroke="#7ca7c1" stroke-width="2" />
+    <path d="M716 417 H762 L711 460 H716 Z" fill="#cce5f4" stroke="#7ca7c1" stroke-width="2" />
+    <text class="supporter-label" x="738" y="348">121 GA</text><text class="supporter-label" x="739" y="391">SUPPORTERS</text>
+    <text class="supporter-label" x="739" y="434">124 GA</text><text class="supporter-label" x="740" y="455">SUPPORTERS</text>
+  </g>
+
+  <!-- South lower and middle levels -->
+  <g>
+    <path class="seat" d="M318 502 L359 487 L374 530 L337 550 Z" />
+    <path class="seat" d="M365 487 L423 497 L428 547 L380 531 Z" />
+    <path class="seat" d="M430 499 L486 504 L487 553 L434 548 Z" />
+    <path class="seat" d="M493 505 L545 504 L543 553 L493 553 Z" />
+    <path class="seat" d="M552 502 L607 493 L599 544 L549 552 Z" />
+    <path class="seat" d="M614 491 L665 476 L650 527 L605 543 Z" />
+    <path class="seat" d="M672 474 L713 449 L686 508 L657 526 Z" />
+    <g class="section-label"><text x="345" y="535">144</text><text x="401" y="537">141</text><text x="458" y="541">138</text><text x="526" y="541">133</text><text x="583" y="532">130</text><text x="642" y="513">126</text></g>
+
+    <path class="seat" d="M276 533 L333 555 L311 594 L258 565 Z" /><text class="small-label" x="298" y="558">244</text>
+    <path class="seat" d="M340 554 L393 570 L382 611 L320 595 Z" /><text class="small-label" x="359" y="581">242</text>
+    <path class="seat" d="M400 571 L450 579 L446 619 L389 612 Z" /><text class="small-label" x="423" y="590">240</text>
+    <path class="seat" d="M458 579 L509 582 L508 621 L453 619 Z" /><text class="small-label" x="483" y="595">237</text>
+    <path class="seat" d="M516 581 L567 575 L573 616 L515 621 Z" />
+    <path class="seat" d="M574 574 L627 560 L641 602 L580 615 Z" /><text class="small-label" x="604" y="586">233</text>
+    <path class="seat" d="M634 558 L685 535 L707 576 L648 600 Z" />
+    <path class="seat" d="M693 531 L738 500 L771 543 L714 574 Z" /><text class="small-label" x="720" y="536">230</text>
+    <path class="seat" d="M711 504 L788 527 L765 565 L706 544 Z" /><text class="section-label" x="756" y="536">226</text>
+  </g>
+
+  <!-- South 400 level: large separated wedges -->
+  <g>
+    <path class="seat" d="M265 567 L326 586 L313 625 L252 603 Z" /><text class="small-label" x="290" y="593">343</text>
+    <path class="seat" d="M332 588 L390 599 L383 636 L319 626 Z" /><text class="small-label" x="355" y="610">341</text>
+    <path class="seat" d="M397 600 L455 607 L452 641 L390 636 Z" /><text class="small-label" x="424" y="619">338</text>
+    <path class="seat" d="M462 608 L516 610 L516 641 L459 641 Z" /><text class="small-label" x="489" y="624">338</text>
+    <path class="seat" d="M523 610 L578 605 L582 638 L523 641 Z" /><text class="small-label" x="551" y="621">335</text>
+    <path class="seat" d="M585 604 L640 592 L649 628 L589 637 Z" /><text class="small-label" x="616" y="612">333</text>
+    <path class="seat" d="M647 590 L700 571 L715 610 L656 626 Z" /><text class="small-label" x="679" y="596">331</text>
+    <path class="seat" d="M707 568 L754 544 L779 582 L722 607 Z" /><text class="small-label" x="742" y="572">329</text>
+    <path class="seat-dark" d="M116 572 L183 601 L149 652 L91 617 Z" /><text class="section-label" x="133" y="604">446</text>
+    <path class="seat-dark" d="M188 600 L247 619 L220 682 L156 654 Z" /><text class="section-label" x="202" y="632">445</text>
+    <path class="seat-dark" d="M253 617 L308 628 L290 708 L227 685 Z" /><text class="section-label" x="266" y="646">444</text>
+    <path class="seat-dark" d="M315 628 L363 633 L354 727 L298 711 Z" /><text class="section-label" x="329" y="655">443</text>
+    <path class="seat-dark" d="M370 634 L421 637 L417 738 L361 728 Z" /><text class="section-label" x="387" y="663">442</text>
+    <path class="seat-dark" d="M428 637 L481 639 L480 743 L424 739 Z" /><text class="section-label" x="451" y="674">440</text>
+    <path class="seat-dark" d="M488 639 L541 638 L543 742 L487 743 Z" /><text class="section-label" x="515" y="675">438</text>
+    <path class="seat-dark" d="M548 637 L599 633 L607 729 L550 741 Z" /><text class="section-label" x="573" y="667">436</text>
+    <path class="seat-dark" d="M606 632 L657 625 L673 711 L614 727 Z" /><text class="section-label" x="632" y="658">434</text>
+    <path class="seat-dark" d="M664 623 L718 609 L744 683 L681 708 Z" /><text class="section-label" x="691" y="648">432</text>
+    <path class="seat-dark" d="M725 606 L782 584 L818 650 L751 679 Z" /><text class="section-label" x="760" y="624">431</text>
+    <path class="seat-dark" d="M789 581 L849 550 L898 608 L826 646 Z" /><text class="section-label" x="829" y="599">430</text>
+    <path class="seat-dark" d="M857 548 L920 515 L943 566 L904 603 Z" /><text class="section-label" x="886" y="563">428</text>
+  </g>
+
+  <!-- Pitch -->
+  <rect x="327" y="289" width="390" height="236" rx="27" fill="#fff" />
+  <rect x="336" y="298" width="372" height="218" rx="21" fill="url(#pitch-stripes)" stroke="#78945a" stroke-width="2" />
+  <g fill="none" stroke="#d5e0c8" stroke-width="1.4" opacity=".68">
+    <path d="M522 299 V515" />
+    <circle cx="522" cy="407" r="27" />
+    <circle cx="522" cy="407" r="1.5" fill="#d5e0c8" />
+    <path d="M337 350 H384 V464 H337 M708 350 H661 V464 H708" />
+    <path d="M337 375 H358 V439 H337 M708 375 H687 V439 H708" />
+    <path d="M384 379 A29 29 0 0 1 384 435 M661 379 A29 29 0 0 0 661 435" />
+  </g>
+  <g fill="#d9dfd2" stroke="#899a7a" stroke-width="1">
+    <rect x="331" y="358" width="8" height="95" /><rect x="705" y="358" width="8" height="95" />
+  </g>
+  <g class="venue-label" font-weight="700">
+    <text x="421" y="300">NE</text><text x="486" y="300">FIELD</text><text x="609" y="300">FIELD</text>
+    <text x="493" y="513">VISITORS</text><text x="597" y="513">FIELDSW</text>
+    <text x="341" y="340">FL9</text><text x="341" y="396">FL3</text><text x="341" y="441">FL2</text>
+  </g>
 </svg>
