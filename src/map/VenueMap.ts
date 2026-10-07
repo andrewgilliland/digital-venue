@@ -475,14 +475,26 @@ function drawField(viewport: Container, venue: Venue) {
   const markings = new Graphics();
   const inset = 13;
   for (let index = 1; index < 12; index += 1) {
-    const y = top + (height * index) / 12;
-    markings.moveTo(left + inset, y).lineTo(left + width - inset, y);
+    if (width >= height) {
+      const x = left + (width * index) / 12;
+      markings.moveTo(x, top + inset).lineTo(x, top + height - inset);
+    } else {
+      const y = top + (height * index) / 12;
+      markings.moveTo(left + inset, y).lineTo(left + width - inset, y);
+    }
   }
   markings.stroke({ color: 0xf4f5ee, alpha: 0.48, width: 1.4 });
-  markings
-    .moveTo(left + inset, venue.center.y)
-    .lineTo(left + width - inset, venue.center.y)
-    .stroke({ color: 0xffffff, alpha: 0.72, width: 2 });
+  if (width >= height) {
+    markings
+      .moveTo(venue.center.x, top + inset)
+      .lineTo(venue.center.x, top + height - inset)
+      .stroke({ color: 0xffffff, alpha: 0.72, width: 2 });
+  } else {
+    markings
+      .moveTo(left + inset, venue.center.y)
+      .lineTo(left + width - inset, venue.center.y)
+      .stroke({ color: 0xffffff, alpha: 0.72, width: 2 });
+  }
   viewport.addChild(markings);
 
   const fieldLabel = new Text({

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import stadiumMapReference from "../docs/specs/stadium-map.svg?url";
 import soldierFieldData from "./data/venues/soldier-field.json";
 import { generateVenueSeats, type VenueSeat } from "./domain/seats";
 import { VenueSchema } from "./domain/venue";
@@ -13,6 +14,8 @@ function App() {
   const inspectedSeatIdRef = useRef<string | null>(null);
   const [mapError, setMapError] = useState<string | null>(null);
   const [zoomPercent, setZoomPercent] = useState(100);
+  const [referenceVisible, setReferenceVisible] = useState(true);
+  const [referenceOpacity, setReferenceOpacity] = useState(45);
   const [focusedSectionId, setFocusedSectionId] = useState<string | null>(null);
   const [inspectedSeatId, setInspectedSeatId] = useState<string | null>(null);
 
@@ -169,6 +172,14 @@ function App() {
           role="region"
         >
           <div ref={mapHost} className="absolute inset-0 touch-none" />
+          {referenceVisible && (
+            <img
+              alt="Stadium seating map reference overlay"
+              className="pointer-events-none absolute inset-[4%] z-[1] h-[92%] w-[92%] object-contain"
+              src={stadiumMapReference}
+              style={{ opacity: referenceOpacity / 100 }}
+            />
+          )}
 
           <div className="pointer-events-none absolute inset-x-0 top-0 flex items-start justify-between p-4 sm:p-6">
             <div className="rounded-2xl border border-white/80 bg-white/90 px-4 py-3 shadow-sm backdrop-blur">
@@ -204,7 +215,7 @@ function App() {
             </div>
           </div>
 
-          <div className="absolute bottom-4 left-4 flex items-center gap-3 sm:bottom-6 sm:left-6">
+          <div className="absolute bottom-4 left-4 z-10 flex flex-wrap items-center gap-3 sm:bottom-6 sm:left-6">
             <button
               className="rounded-xl border border-white/80 bg-white/90 px-3 py-2 text-xs font-semibold text-neutral-700 shadow-sm backdrop-blur transition hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
               onClick={() => mapController.current?.resetView()}
@@ -212,6 +223,28 @@ function App() {
             >
               Reset view
             </button>
+            <button
+              aria-pressed={referenceVisible}
+              className="rounded-xl border border-white/80 bg-white/90 px-3 py-2 text-xs font-semibold text-neutral-700 shadow-sm backdrop-blur transition hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
+              onClick={() => setReferenceVisible((visible) => !visible)}
+              type="button"
+            >
+              Reference {referenceVisible ? "on" : "off"}
+            </button>
+            <label className="flex items-center gap-2 rounded-xl border border-white/80 bg-white/90 px-3 py-2 text-xs font-semibold text-neutral-700 shadow-sm backdrop-blur">
+              <span>Opacity</span>
+              <input
+                aria-label="Reference overlay opacity"
+                className="w-20 accent-neutral-800"
+                max={100}
+                min={0}
+                onChange={(event) =>
+                  setReferenceOpacity(Number(event.currentTarget.value))
+                }
+                type="range"
+                value={referenceOpacity}
+              />
+            </label>
             <span
               aria-label="Map zoom"
               className="rounded-lg bg-white/80 px-2 py-1 text-xs tabular-nums text-neutral-500"

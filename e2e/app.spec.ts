@@ -45,6 +45,32 @@ test("supports map zoom controls and reset", async ({ page }) => {
   await expect(zoomStatus).toHaveText("100%");
 });
 
+test("compares the venue drawing with the provided map reference", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  const reference = page.getByRole("img", {
+    name: "Stadium seating map reference overlay",
+  });
+  const toggle = page.getByRole("button", { name: "Reference on" });
+  const opacity = page.getByRole("slider", {
+    name: "Reference overlay opacity",
+  });
+
+  await expect(reference).toBeVisible();
+  await expect(toggle).toHaveAttribute("aria-pressed", "true");
+  await expect(opacity).toHaveValue("45");
+  await opacity.fill("65");
+  await expect(opacity).toHaveValue("65");
+
+  await toggle.click();
+  await expect(reference).toHaveCount(0);
+  await expect(
+    page.getByRole("button", { name: "Reference off" }),
+  ).toHaveAttribute("aria-pressed", "false");
+});
+
 test("focuses a detailed section and inspects a generated seat", async ({
   page,
 }) => {
