@@ -1,6 +1,6 @@
 # Digital Venue
 
-A frontend-only prototype for exploring a top-down, seat-level venue map. The project is scaffolded but the venue map and product workflows have not been implemented yet.
+A frontend-only prototype for exploring a top-down, seat-level venue map. The current slice renders a local-data Soldier Field overview with pan and zoom; seat-level selection is planned.
 
 ## Stack
 
@@ -10,6 +10,7 @@ A frontend-only prototype for exploring a top-down, seat-level venue map. The pr
 - Zod for local JSON validation
 - Vitest and Testing Library
 - Playwright
+- Husky pre-commit checks
 
 ## Commands
 
@@ -22,6 +23,8 @@ pnpm typecheck
 pnpm test
 pnpm test:e2e
 ```
+
+Git commits run `pnpm lint`, `pnpm typecheck`, and `pnpm test` automatically through Husky's pre-commit hook.
 
 ## Architecture
 
