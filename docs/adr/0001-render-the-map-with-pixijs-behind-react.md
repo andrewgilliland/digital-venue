@@ -1,0 +1,3 @@
+# Render the map with PixiJS behind React
+
+The venue map will use a narrow imperative PixiJS module for its WebGL scene, camera transforms, semantic zoom, and hit testing, while React owns product state and accessible DOM controls. This keeps high-volume map rendering out of the DOM without coupling venue and selection rules to canvas objects; it also avoids an API-key map platform and preserves a seam where the renderer can later be replaced without rewriting product behavior.
