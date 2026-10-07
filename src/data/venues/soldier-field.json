@@ -1,0 +1,272 @@
+{
+  "id": "soldier-field",
+  "name": "Soldier Field",
+  "location": {
+    "city": "Chicago",
+    "state": "Illinois"
+  },
+  "viewBox": {
+    "width": 1000,
+    "height": 760
+  },
+  "center": {
+    "x": 500,
+    "y": 380
+  },
+  "field": {
+    "width": 322,
+    "height": 462,
+    "label": "FIELD"
+  },
+  "decks": [
+    {
+      "id": "upper",
+      "name": "Upper Deck",
+      "shortName": "Upper",
+      "innerRadiusX": 364,
+      "innerRadiusY": 358,
+      "outerRadiusX": 480,
+      "outerRadiusY": 372,
+      "sections": [
+        {
+          "id": "upper-101",
+          "name": "101",
+          "startAngle": -3.1416,
+          "endAngle": -2.618
+        },
+        {
+          "id": "upper-102",
+          "name": "102",
+          "startAngle": -2.618,
+          "endAngle": -2.0944
+        },
+        {
+          "id": "upper-103",
+          "name": "103",
+          "startAngle": -2.0944,
+          "endAngle": -1.5708
+        },
+        {
+          "id": "upper-104",
+          "name": "104",
+          "startAngle": -1.5708,
+          "endAngle": -1.0472
+        },
+        {
+          "id": "upper-105",
+          "name": "105",
+          "startAngle": -1.0472,
+          "endAngle": -0.5236
+        },
+        {
+          "id": "upper-106",
+          "name": "106",
+          "startAngle": -0.5236,
+          "endAngle": 0.0
+        },
+        {
+          "id": "upper-107",
+          "name": "107",
+          "startAngle": 0.0,
+          "endAngle": 0.5236
+        },
+        {
+          "id": "upper-108",
+          "name": "108",
+          "startAngle": 0.5236,
+          "endAngle": 1.0472
+        },
+        {
+          "id": "upper-109",
+          "name": "109",
+          "startAngle": 1.0472,
+          "endAngle": 1.5708
+        },
+        {
+          "id": "upper-110",
+          "name": "110",
+          "startAngle": 1.5708,
+          "endAngle": 2.0944
+        },
+        {
+          "id": "upper-111",
+          "name": "111",
+          "startAngle": 2.0944,
+          "endAngle": 2.618
+        },
+        {
+          "id": "upper-112",
+          "name": "112",
+          "startAngle": 2.618,
+          "endAngle": 3.1416
+        }
+      ]
+    },
+    {
+      "id": "lower",
+      "name": "100 Level",
+      "shortName": "100",
+      "innerRadiusX": 284,
+      "innerRadiusY": 344,
+      "outerRadiusX": 360,
+      "outerRadiusY": 354,
+      "sections": [
+        {
+          "id": "lower-201",
+          "name": "201",
+          "startAngle": -3.1416,
+          "endAngle": -2.618
+        },
+        {
+          "id": "lower-202",
+          "name": "202",
+          "startAngle": -2.618,
+          "endAngle": -2.0944
+        },
+        {
+          "id": "lower-203",
+          "name": "203",
+          "startAngle": -2.0944,
+          "endAngle": -1.5708
+        },
+        {
+          "id": "lower-204",
+          "name": "204",
+          "startAngle": -1.5708,
+          "endAngle": -1.0472
+        },
+        {
+          "id": "lower-205",
+          "name": "205",
+          "startAngle": -1.0472,
+          "endAngle": -0.5236
+        },
+        {
+          "id": "lower-206",
+          "name": "206",
+          "startAngle": -0.5236,
+          "endAngle": 0.0
+        },
+        {
+          "id": "lower-207",
+          "name": "207",
+          "startAngle": 0.0,
+          "endAngle": 0.5236
+        },
+        {
+          "id": "lower-208",
+          "name": "208",
+          "startAngle": 0.5236,
+          "endAngle": 1.0472
+        },
+        {
+          "id": "lower-209",
+          "name": "209",
+          "startAngle": 1.0472,
+          "endAngle": 1.5708
+        },
+        {
+          "id": "lower-210",
+          "name": "210",
+          "startAngle": 1.5708,
+          "endAngle": 2.0944
+        },
+        {
+          "id": "lower-211",
+          "name": "211",
+          "startAngle": 2.0944,
+          "endAngle": 2.618
+        },
+        {
+          "id": "lower-212",
+          "name": "212",
+          "startAngle": 2.618,
+          "endAngle": 3.1416
+        }
+      ]
+    },
+    {
+      "id": "club",
+      "name": "Club Level",
+      "shortName": "Club",
+      "innerRadiusX": 232,
+      "innerRadiusY": 322,
+      "outerRadiusX": 280,
+      "outerRadiusY": 340,
+      "sections": [
+        {
+          "id": "club-301",
+          "name": "301",
+          "startAngle": -3.1416,
+          "endAngle": -2.618
+        },
+        {
+          "id": "club-302",
+          "name": "302",
+          "startAngle": -2.618,
+          "endAngle": -2.0944
+        },
+        {
+          "id": "club-303",
+          "name": "303",
+          "startAngle": -2.0944,
+          "endAngle": -1.5708
+        },
+        {
+          "id": "club-304",
+          "name": "304",
+          "startAngle": -1.5708,
+          "endAngle": -1.0472
+        },
+        {
+          "id": "club-305",
+          "name": "305",
+          "startAngle": -1.0472,
+          "endAngle": -0.5236
+        },
+        {
+          "id": "club-306",
+          "name": "306",
+          "startAngle": -0.5236,
+          "endAngle": 0.0
+        },
+        {
+          "id": "club-307",
+          "name": "307",
+          "startAngle": 0.0,
+          "endAngle": 0.5236
+        },
+        {
+          "id": "club-308",
+          "name": "308",
+          "startAngle": 0.5236,
+          "endAngle": 1.0472
+        },
+        {
+          "id": "club-309",
+          "name": "309",
+          "startAngle": 1.0472,
+          "endAngle": 1.5708
+        },
+        {
+          "id": "club-310",
+          "name": "310",
+          "startAngle": 1.5708,
+          "endAngle": 2.0944
+        },
+        {
+          "id": "club-311",
+          "name": "311",
+          "startAngle": 2.0944,
+          "endAngle": 2.618
+        },
+        {
+          "id": "club-312",
+          "name": "312",
+          "startAngle": 2.618,
+          "endAngle": 3.1416
+        }
+      ]
+    }
+  ]
+}
