@@ -1,19 +1,38 @@
 import { Application, Container, Graphics, Text } from "pixi.js";
-import type { Venue, VenueDeck } from "../domain/venue";
+import { generateVenueSeats, type VenueSeat } from "../domain/seats";
+import type { Venue, VenueDeck, VenueSection } from "../domain/venue";
 
 const FIT_PADDING = 0.9;
 
 export interface VenueMapController {
+  focusSection(sectionId: string): void;
+  setInspectedSeat(seatId: string | null): void;
+  showOverview(): void;
   zoomIn(): void;
   zoomOut(): void;
   resetView(): void;
   destroy(): void;
 }
 
+export interface VenueMapCallbacks {
+  onZoomChange(percent: number): void;
+  onSectionSelect?(sectionId: string): void;
+  onSeatSelect?(seatId: string): void;
+}
+
+interface SectionScene {
+  center: { x: number; y: number };
+  label: Text;
+  rowLayer: Container;
+  seatLayer: Container;
+  seatGraphics: Map<string, Graphics>;
+  shape: Graphics;
+}
+
 export async function mountVenueMap(
   host: HTMLElement,
   venue: Venue,
-  onZoomChange: (percent: number) => void,
+  callbacks: VenueMapCallbacks,
   signal?: AbortSignal,
 ): Promise<VenueMapController> {
   if (signal?.aborted) {
@@ -53,7 +72,22 @@ export async function mountVenueMap(
 
   const viewport = new Container();
   app.stage.addChild(viewport);
-  drawVenue(viewport, venue);
+  let focusedSectionId: string | null = null;
+  let inspectedSeatId: string | null = null;
+  let animationFrame: number | null = null;
+  let sectionScenes = new Map<string, SectionScene>();
+  sectionScenes = drawVenue(
+    viewport,
+    venue,
+    (sectionId) => {
+      focusSection(sectionId);
+      callbacks.onSectionSelect?.(sectionId);
+    },
+    (seatId) => {
+      setInspectedSeat(seatId);
+      callbacks.onSeatSelect?.(seatId);
+    },
+  );
 
   const { width: worldWidth, height: worldHeight } = venue.viewBox;
   let fitScale = 1;
@@ -62,7 +96,19 @@ export async function mountVenueMap(
   let dragX = 0;
   let dragY = 0;
 
-  const reportZoom = () => onZoomChange(Math.round(zoomFactor * 100));
+  const reportZoom = () => callbacks.onZoomChange(Math.round(zoomFactor * 100));
+  const updateSemanticVisibility = () => {
+    sectionScenes.forEach((scene, sectionId) => {
+      const focused = sectionId === focusedSectionId;
+      scene.shape.alpha = focusedSectionId && !focused ? 0.38 : 1;
+      scene.label.alpha = focusedSectionId && !focused ? 0.42 : 1;
+      scene.rowLayer.visible = focused && zoomFactor >= 1.45;
+      scene.seatLayer.visible = focused && zoomFactor >= 1.8;
+      scene.seatGraphics.forEach((graphic, seatId) => {
+        graphic.tint = seatId === inspectedSeatId ? 0x20242b : 0xffffff;
+      });
+    });
+  };
   const layout = () => {
     const width = host.clientWidth;
     const height = host.clientHeight;
@@ -71,10 +117,20 @@ export async function mountVenueMap(
     app.renderer.resize(width, height);
     fitScale = Math.min(width / worldWidth, height / worldHeight) * FIT_PADDING;
     viewport.scale.set(fitScale * zoomFactor);
-    viewport.position.set(
-      (width - worldWidth * fitScale * zoomFactor) / 2,
-      (height - worldHeight * fitScale * zoomFactor) / 2,
-    );
+    const focus = focusedSectionId
+      ? sectionScenes.get(focusedSectionId)?.center
+      : undefined;
+    if (focus) {
+      viewport.position.set(
+        width / 2 - focus.x * viewport.scale.x,
+        height / 2 - focus.y * viewport.scale.y,
+      );
+    } else {
+      viewport.position.set(
+        (width - worldWidth * fitScale * zoomFactor) / 2,
+        (height - worldHeight * fitScale * zoomFactor) / 2,
+      );
+    }
   };
 
   const clampZoom = (value: number) => Math.min(2.8, Math.max(0.7, value));
@@ -92,13 +148,69 @@ export async function mountVenueMap(
       x - worldX * viewport.scale.x,
       y - worldY * viewport.scale.y,
     );
+    updateSemanticVisibility();
     reportZoom();
   };
 
   const resetView = () => {
+    focusedSectionId = null;
+    inspectedSeatId = null;
     zoomFactor = 1;
     layout();
+    updateSemanticVisibility();
     reportZoom();
+  };
+
+  const animateTo = (
+    targetZoom: number,
+    worldPoint: { x: number; y: number },
+  ) => {
+    if (animationFrame !== null) cancelAnimationFrame(animationFrame);
+    const startTime = performance.now();
+    const startZoom = zoomFactor;
+    const startX = viewport.x;
+    const startY = viewport.y;
+    const nextZoom = clampZoom(targetZoom);
+    const targetScale = fitScale * nextZoom;
+    const targetX = host.clientWidth / 2 - worldPoint.x * targetScale;
+    const targetY = host.clientHeight / 2 - worldPoint.y * targetScale;
+
+    const step = (now: number) => {
+      const progress = Math.min(1, (now - startTime) / 320);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      zoomFactor = startZoom + (nextZoom - startZoom) * eased;
+      viewport.scale.set(fitScale * zoomFactor);
+      viewport.position.set(
+        startX + (targetX - startX) * eased,
+        startY + (targetY - startY) * eased,
+      );
+      updateSemanticVisibility();
+      reportZoom();
+      animationFrame = progress < 1 ? requestAnimationFrame(step) : null;
+    };
+
+    animationFrame = requestAnimationFrame(step);
+  };
+
+  function focusSection(sectionId: string) {
+    const scene = sectionScenes.get(sectionId);
+    if (!scene) return;
+    focusedSectionId = sectionId;
+    inspectedSeatId = null;
+    updateSemanticVisibility();
+    animateTo(2.4, scene.center);
+  }
+
+  function setInspectedSeat(seatId: string | null) {
+    inspectedSeatId = seatId;
+    updateSemanticVisibility();
+  }
+
+  const showOverview = () => {
+    focusedSectionId = null;
+    inspectedSeatId = null;
+    updateSemanticVisibility();
+    animateTo(1, venue.center);
   };
 
   const onPointerDown = (event: PointerEvent) => {
@@ -147,10 +259,14 @@ export async function mountVenueMap(
   reportZoom();
 
   return {
+    focusSection,
+    setInspectedSeat,
+    showOverview,
     zoomIn: () => zoomAt(zoomFactor * 1.2),
     zoomOut: () => zoomAt(zoomFactor / 1.2),
     resetView,
     destroy: () => {
+      if (animationFrame !== null) cancelAnimationFrame(animationFrame);
       observer.disconnect();
       canvas.removeEventListener("pointerdown", onPointerDown);
       canvas.removeEventListener("pointermove", onPointerMove);
@@ -163,7 +279,12 @@ export async function mountVenueMap(
   };
 }
 
-function drawVenue(viewport: Container, venue: Venue) {
+function drawVenue(
+  viewport: Container,
+  venue: Venue,
+  onSectionSelect: (sectionId: string) => void,
+  onSeatSelect: (seatId: string) => void,
+) {
   const { x: centerX, y: centerY } = venue.center;
   const widestDeck = venue.decks.reduce((widest, deck) =>
     deck.outerRadiusX > widest.outerRadiusX ? deck : widest,
@@ -185,10 +306,13 @@ function drawVenue(viewport: Container, venue: Venue) {
     .stroke({ color: 0xc8cdd7, width: 2 });
   viewport.addChild(outerShape);
 
-  venue.decks.forEach((deck, deckIndex) =>
-    drawDeck(viewport, venue, deck, deckIndex),
-  );
+  const sectionScenes = new Map<string, SectionScene>();
+  venue.decks.forEach((deck, deckIndex) => {
+    drawDeck(viewport, venue, deck, deckIndex, sectionScenes, onSectionSelect);
+  });
   drawField(viewport, venue);
+  drawSectionDetails(viewport, venue, sectionScenes, onSeatSelect);
+  return sectionScenes;
 }
 
 function drawDeck(
@@ -196,6 +320,8 @@ function drawDeck(
   venue: Venue,
   deck: VenueDeck,
   deckIndex: number,
+  sectionScenes: Map<string, SectionScene>,
+  onSectionSelect: (sectionId: string) => void,
 ) {
   const colors = [0xd9dde4, 0xd2d7df, 0xe0e3e8];
   const color = colors[deckIndex % colors.length];
@@ -216,6 +342,9 @@ function drawDeck(
       .poly(points)
       .fill({ color: index % 2 === 0 ? color : lighten(color, 5) })
       .stroke({ color: 0xf8f9fb, width: 2 });
+    shape.eventMode = "static";
+    shape.cursor = "pointer";
+    shape.on("pointertap", () => onSectionSelect(section.id));
     viewport.addChild(shape);
 
     const midpoint = (section.startAngle + section.endAngle) / 2;
@@ -236,7 +365,101 @@ function drawDeck(
       venue.center.y + Math.sin(midpoint) * radiusY,
     );
     viewport.addChild(label);
+
+    const rowLayer = new Container();
+    const seatLayer = new Container();
+    rowLayer.visible = false;
+    seatLayer.visible = false;
+    viewport.addChild(rowLayer, seatLayer);
+    sectionScenes.set(section.id, {
+      center: {
+        x: venue.center.x + Math.cos(midpoint) * radiusX,
+        y: venue.center.y + Math.sin(midpoint) * radiusY,
+      },
+      label,
+      rowLayer,
+      seatLayer,
+      seatGraphics: new Map(),
+      shape,
+    });
   });
+}
+
+function drawSectionDetails(
+  viewport: Container,
+  venue: Venue,
+  sectionScenes: Map<string, SectionScene>,
+  onSeatSelect: (seatId: string) => void,
+) {
+  const seats = generateVenueSeats(venue);
+
+  for (const deck of venue.decks) {
+    for (const section of deck.sections) {
+      if (section.rows.length === 0) continue;
+      const scene = sectionScenes.get(section.id);
+      if (!scene) continue;
+      const sectionSeats = seats.filter(
+        (seat) => seat.sectionId === section.id,
+      );
+
+      for (const row of section.rows) {
+        const rowSeats = sectionSeats.filter((seat) => seat.rowId === row.id);
+        drawRow(scene, rowSeats, section);
+        for (const seat of rowSeats) {
+          const graphic = new Graphics()
+            .circle(seat.position.x, seat.position.y, 4.2)
+            .fill({ color: 0xffffff })
+            .stroke({ color: 0x596171, width: 1.2 });
+          graphic.eventMode = "static";
+          graphic.cursor = "pointer";
+          graphic.on("pointertap", () => onSeatSelect(seat.id));
+          scene.seatLayer.addChild(graphic);
+          scene.seatGraphics.set(seat.id, graphic);
+        }
+      }
+    }
+  }
+
+  viewport.addChild(
+    ...Array.from(sectionScenes.values()).flatMap((scene) => [
+      scene.rowLayer,
+      scene.seatLayer,
+    ]),
+  );
+}
+
+function drawRow(
+  scene: SectionScene,
+  seats: VenueSeat[],
+  section: VenueSection,
+) {
+  if (seats.length === 0) return;
+  const path = new Graphics();
+  seats.forEach((seat, index) => {
+    if (index === 0) path.moveTo(seat.position.x, seat.position.y);
+    else path.lineTo(seat.position.x, seat.position.y);
+  });
+  path.stroke({ color: 0x8b93a1, alpha: 0.55, width: 1 });
+  scene.rowLayer.addChild(path);
+
+  const middleSeat = seats[Math.floor(seats.length / 2)];
+  if (!middleSeat) return;
+  const label = new Text({
+    text: `R${middleSeat.rowName}`,
+    style: {
+      fill: "#4f5867",
+      fontFamily: "Arial, sans-serif",
+      fontSize: 7,
+      fontWeight: "700",
+    },
+  });
+  label.anchor.set(0.5);
+  const midpoint = (section.startAngle + section.endAngle) / 2;
+  label.position.set(
+    middleSeat.position.x + Math.cos(midpoint) * 9,
+    middleSeat.position.y + Math.sin(midpoint) * 9,
+  );
+  scene.rowLayer.addChild(label);
 }
 
 function drawField(viewport: Container, venue: Venue) {

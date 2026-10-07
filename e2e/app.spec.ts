@@ -45,6 +45,60 @@ test("supports map zoom controls and reset", async ({ page }) => {
   await expect(zoomStatus).toHaveText("100%");
 });
 
+test("focuses a detailed section and inspects a generated seat", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  await page.getByText("Browse all 36 sections").click();
+  await page.getByRole("button", { name: "View Section 110" }).click();
+
+  await expect(
+    page.getByRole("heading", { name: "Section 110" }),
+  ).toBeVisible();
+  await expect(page.getByRole("status", { name: "Map zoom" })).toHaveText(
+    "240%",
+  );
+
+  await page
+    .getByRole("button", {
+      name: "Inspect Section 110 Row 1 Seat 1",
+      exact: true,
+    })
+    .click();
+
+  const details = page.getByRole("region", { name: "Inspected seat details" });
+  await expect(details).toContainText("Seat 1");
+  await expect(details).toContainText("Section 110 · Row 1");
+  await expect(details).toContainText("100 Level");
+
+  await page.getByRole("button", { name: "Back to venue overview" }).click();
+
+  await expect(
+    page.getByRole("heading", { name: "Soldier Field" }),
+  ).toBeVisible();
+  await expect(page.getByRole("status", { name: "Map zoom" })).toHaveText(
+    "100%",
+  );
+
+  for (const section of ["122", "430"]) {
+    await page.getByText("Browse all 36 sections").click();
+    await page
+      .getByRole("button", { name: `View Section ${section}`, exact: true })
+      .click();
+    await expect(
+      page.getByRole("heading", { name: `Section ${section}` }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("button", {
+        name: `Inspect Section ${section} Row 1 Seat 1`,
+        exact: true,
+      }),
+    ).toBeVisible();
+    await page.getByRole("button", { name: "Back to venue overview" }).click();
+  }
+});
+
 test("pans the rendered map when dragged", async ({ page }) => {
   await page.goto("/");
 

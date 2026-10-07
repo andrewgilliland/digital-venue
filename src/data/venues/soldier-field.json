@@ -83,10 +83,72 @@
           "endAngle": 1.5708
         },
         {
-          "id": "upper-110",
-          "name": "110",
+          "id": "upper-430",
+          "name": "430",
           "startAngle": 1.5708,
-          "endAngle": 2.0944
+          "endAngle": 2.0944,
+          "rows": [
+            {
+              "id": "upper-430-row-1",
+              "name": "1",
+              "seatCount": 24,
+              "path": {
+                "type": "arc",
+                "radiusX": 376,
+                "radiusY": 360,
+                "startAngle": 1.62,
+                "endAngle": 2.04
+              }
+            },
+            {
+              "id": "upper-430-row-2",
+              "name": "2",
+              "seatCount": 25,
+              "path": {
+                "type": "arc",
+                "radiusX": 396,
+                "radiusY": 362,
+                "startAngle": 1.62,
+                "endAngle": 2.04
+              }
+            },
+            {
+              "id": "upper-430-row-3",
+              "name": "3",
+              "seatCount": 26,
+              "path": {
+                "type": "arc",
+                "radiusX": 416,
+                "radiusY": 364,
+                "startAngle": 1.62,
+                "endAngle": 2.04
+              }
+            },
+            {
+              "id": "upper-430-row-4",
+              "name": "4",
+              "seatCount": 27,
+              "path": {
+                "type": "arc",
+                "radiusX": 436,
+                "radiusY": 366,
+                "startAngle": 1.62,
+                "endAngle": 2.04
+              }
+            },
+            {
+              "id": "upper-430-row-5",
+              "name": "5",
+              "seatCount": 28,
+              "path": {
+                "type": "arc",
+                "radiusX": 456,
+                "radiusY": 369,
+                "startAngle": 1.62,
+                "endAngle": 2.04
+              }
+            }
+          ]
         },
         {
           "id": "upper-111",
@@ -130,10 +192,72 @@
           "endAngle": -1.5708
         },
         {
-          "id": "lower-204",
-          "name": "204",
+          "id": "lower-122",
+          "name": "122",
           "startAngle": -1.5708,
-          "endAngle": -1.0472
+          "endAngle": -1.0472,
+          "rows": [
+            {
+              "id": "lower-122-row-1",
+              "name": "1",
+              "seatCount": 18,
+              "path": {
+                "type": "arc",
+                "radiusX": 294,
+                "radiusY": 345,
+                "startAngle": -1.52,
+                "endAngle": -1.1
+              }
+            },
+            {
+              "id": "lower-122-row-2",
+              "name": "2",
+              "seatCount": 19,
+              "path": {
+                "type": "arc",
+                "radiusX": 308,
+                "radiusY": 347,
+                "startAngle": -1.52,
+                "endAngle": -1.1
+              }
+            },
+            {
+              "id": "lower-122-row-3",
+              "name": "3",
+              "seatCount": 20,
+              "path": {
+                "type": "arc",
+                "radiusX": 323,
+                "radiusY": 349,
+                "startAngle": -1.52,
+                "endAngle": -1.1
+              }
+            },
+            {
+              "id": "lower-122-row-4",
+              "name": "4",
+              "seatCount": 21,
+              "path": {
+                "type": "arc",
+                "radiusX": 338,
+                "radiusY": 351,
+                "startAngle": -1.52,
+                "endAngle": -1.1
+              }
+            },
+            {
+              "id": "lower-122-row-5",
+              "name": "5",
+              "seatCount": 22,
+              "path": {
+                "type": "arc",
+                "radiusX": 353,
+                "radiusY": 353,
+                "startAngle": -1.52,
+                "endAngle": -1.1
+              }
+            }
+          ]
         },
         {
           "id": "lower-205",
@@ -148,10 +272,72 @@
           "endAngle": 0.0
         },
         {
-          "id": "lower-207",
-          "name": "207",
+          "id": "lower-110",
+          "name": "110",
           "startAngle": 0.0,
-          "endAngle": 0.5236
+          "endAngle": 0.5236,
+          "rows": [
+            {
+              "id": "lower-110-row-1",
+              "name": "1",
+              "seatCount": 20,
+              "path": {
+                "type": "arc",
+                "radiusX": 294,
+                "radiusY": 345,
+                "startAngle": 0.05,
+                "endAngle": 0.48
+              }
+            },
+            {
+              "id": "lower-110-row-2",
+              "name": "2",
+              "seatCount": 21,
+              "path": {
+                "type": "arc",
+                "radiusX": 309,
+                "radiusY": 347,
+                "startAngle": 0.05,
+                "endAngle": 0.48
+              }
+            },
+            {
+              "id": "lower-110-row-3",
+              "name": "3",
+              "seatCount": 22,
+              "path": {
+                "type": "arc",
+                "radiusX": 324,
+                "radiusY": 349,
+                "startAngle": 0.05,
+                "endAngle": 0.48
+              }
+            },
+            {
+              "id": "lower-110-row-4",
+              "name": "4",
+              "seatCount": 23,
+              "path": {
+                "type": "arc",
+                "radiusX": 339,
+                "radiusY": 351,
+                "startAngle": 0.05,
+                "endAngle": 0.48
+              }
+            },
+            {
+              "id": "lower-110-row-5",
+              "name": "5",
+              "seatCount": 24,
+              "path": {
+                "type": "arc",
+                "radiusX": 354,
+                "radiusY": 353,
+                "startAngle": 0.05,
+                "endAngle": 0.48
+              }
+            }
+          ]
         },
         {
           "id": "lower-208",
