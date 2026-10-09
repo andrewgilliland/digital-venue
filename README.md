@@ -27,4 +27,4 @@ pnpm test:e2e
 
 React will own product state and accessible DOM controls. PixiJS will own the map scene, camera transforms, and hit testing behind a narrow interface. See [ADR 0001](docs/adr/0001-render-the-map-with-pixijs-behind-react.md).
 
-Venue geometry loads from validated local JSON. Detailed Sections store concise Row arc paths; stable Seat positions and identifiers are generated deterministically at runtime. Event inventory will remain separate when Offer browsing is added.
+Venue section geometry is parsed from the supplied local SVG and normalized into a Zod-validated venue model. Detailed Sections store concise Row and Seat counts; stable Seat positions and identifiers are generated deterministically inside each Section polygon at runtime. Event inventory will remain separate when Offer browsing is added.

@@ -12,20 +12,17 @@ test("shows a local venue overview and accessible section information", async ({
     page.getByRole("region", { name: "Interactive venue map" }),
   ).toBeVisible();
   await expect(
-    page.getByRole("img", { name: "Top-down schematic map of Soldier Field" }),
+    page.getByRole("img", { name: "Interactive section map of Soldier Field" }),
   ).toBeVisible();
 
-  await page.getByText("Browse all 36 sections").click();
-  await expect(page.getByRole("listitem")).toHaveCount(36);
-  await expect(
-    page.getByRole("list", { name: "Upper Deck sections" }),
-  ).toContainText("101");
+  await page.getByText("Browse all 166 sections").click();
+  await expect(page.getByRole("listitem")).toHaveCount(166);
   await expect(
     page.getByRole("list", { name: "100 Level sections" }),
-  ).toContainText("201");
+  ).toContainText("101");
   await expect(
-    page.getByRole("list", { name: "Club Level sections" }),
-  ).toContainText("301");
+    page.getByRole("list", { name: "400 Level sections" }),
+  ).toContainText("447");
 });
 
 test("supports map zoom controls and reset", async ({ page }) => {
@@ -50,14 +47,14 @@ test("focuses a detailed section and inspects a generated seat", async ({
 }) => {
   await page.goto("/");
 
-  await page.getByText("Browse all 36 sections").click();
+  await page.getByText("Browse all 166 sections").click();
   await page.getByRole("button", { name: "View Section 110" }).click();
 
   await expect(
     page.getByRole("heading", { name: "Section 110" }),
   ).toBeVisible();
   await expect(page.getByRole("status", { name: "Map zoom" })).toHaveText(
-    "240%",
+    "480%",
   );
 
   await page
@@ -82,7 +79,7 @@ test("focuses a detailed section and inspects a generated seat", async ({
   );
 
   for (const section of ["122", "430"]) {
-    await page.getByText("Browse all 36 sections").click();
+    await page.getByText("Browse all 166 sections").click();
     await page
       .getByRole("button", { name: `View Section ${section}`, exact: true })
       .click();
@@ -103,7 +100,7 @@ test("pans the rendered map when dragged", async ({ page }) => {
   await page.goto("/");
 
   const map = page.getByRole("img", {
-    name: "Top-down schematic map of Soldier Field",
+    name: "Interactive section map of Soldier Field",
   });
   await expect(map).toBeVisible();
 
@@ -141,8 +138,8 @@ test("keeps venue information available when WebGL is unavailable", async ({
   await page.goto("/");
 
   await expect(page.getByRole("alert")).toContainText("WebGL is unavailable");
-  await page.getByText("Browse all 36 sections").click();
+  await page.getByText("Browse all 166 sections").click();
   await expect(
-    page.getByRole("list", { name: "Upper Deck sections" }),
+    page.getByRole("list", { name: "100 Level sections" }),
   ).toContainText("101");
 });

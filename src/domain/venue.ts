@@ -2,88 +2,36 @@ import { z } from "zod";
 
 const finiteNumber = z.number().finite();
 
+export const VenuePointSchema = z.object({
+  x: finiteNumber,
+  y: finiteNumber,
+});
+
 export const VenueRowSchema = z.object({
   id: z.string().min(1),
   name: z.string().min(1),
   seatCount: z.number().int().positive(),
-  path: z
-    .object({
-      type: z.literal("arc"),
-      radiusX: finiteNumber.positive(),
-      radiusY: finiteNumber.positive(),
-      startAngle: finiteNumber,
-      endAngle: finiteNumber,
-    })
-    .refine((path) => path.startAngle < path.endAngle, {
-      message: "Row path must have an increasing angle range.",
-    }),
 });
 
-export const VenueSectionSchema = z.object({
-  id: z.string().min(1),
-  name: z.string().min(1),
-  startAngle: finiteNumber,
-  endAngle: finiteNumber,
-  rows: z.array(VenueRowSchema).default([]),
-});
-
-export const VenueDeckSchema = z
+export const VenueSectionSchema = z
   .object({
     id: z.string().min(1),
     name: z.string().min(1),
-    shortName: z.string().min(1),
-    innerRadiusX: finiteNumber.positive(),
-    innerRadiusY: finiteNumber.positive(),
-    outerRadiusX: finiteNumber.positive(),
-    outerRadiusY: finiteNumber.positive(),
-    sections: z.array(VenueSectionSchema).min(1),
+    polygon: z.array(VenuePointSchema).min(3),
+    label: VenuePointSchema,
+    rows: z.array(VenueRowSchema).default([]),
   })
-  .superRefine((deck, context) => {
-    if (
-      deck.innerRadiusX >= deck.outerRadiusX ||
-      deck.innerRadiusY >= deck.outerRadiusY
-    ) {
-      context.addIssue({
-        code: "custom",
-        message: "Inner radii must be smaller than outer radii.",
-      });
-    }
-
-    for (const [sectionIndex, section] of deck.sections.entries()) {
-      if (section.startAngle >= section.endAngle) {
-        context.addIssue({
-          code: "custom",
-          message: `Section ${section.name} must have an increasing angle range.`,
-        });
-      }
-
-      for (const [rowIndex, row] of section.rows.entries()) {
-        const path = row.path;
-        if (
-          path.radiusX < deck.innerRadiusX ||
-          path.radiusX > deck.outerRadiusX ||
-          path.radiusY < deck.innerRadiusY ||
-          path.radiusY > deck.outerRadiusY
-        ) {
-          context.addIssue({
-            code: "custom",
-            message: `Row ${row.name} path must remain within deck ${deck.name}.`,
-            path: ["sections", sectionIndex, "rows", rowIndex, "path"],
-          });
-        }
-        if (
-          path.startAngle < section.startAngle ||
-          path.endAngle > section.endAngle
-        ) {
-          context.addIssue({
-            code: "custom",
-            message: `Row ${row.name} path must remain within section ${section.name}.`,
-            path: ["sections", sectionIndex, "rows", rowIndex, "path"],
-          });
-        }
-      }
-    }
+  .refine((section) => Math.abs(polygonArea(section.polygon)) > 0.01, {
+    message: "Section polygon must enclose an area.",
+    path: ["polygon"],
   });
+
+export const VenueDeckSchema = z.object({
+  id: z.string().min(1),
+  name: z.string().min(1),
+  shortName: z.string().min(1),
+  sections: z.array(VenueSectionSchema).min(1),
+});
 
 export const VenueSchema = z
   .object({
@@ -94,6 +42,8 @@ export const VenueSchema = z
       state: z.string().min(1),
     }),
     viewBox: z.object({
+      x: finiteNumber.default(0),
+      y: finiteNumber.default(0),
       width: finiteNumber.positive(),
       height: finiteNumber.positive(),
     }),
@@ -102,6 +52,8 @@ export const VenueSchema = z
       width: finiteNumber.positive(),
       height: finiteNumber.positive(),
       label: z.string().min(1),
+      offsetX: finiteNumber.default(0),
+      offsetY: finiteNumber.default(0),
     }),
     decks: z.array(VenueDeckSchema).min(1),
   })
@@ -145,3 +97,12 @@ export type Venue = z.infer<typeof VenueSchema>;
 export type VenueDeck = z.infer<typeof VenueDeckSchema>;
 export type VenueRow = z.infer<typeof VenueRowSchema>;
 export type VenueSection = z.infer<typeof VenueSectionSchema>;
+
+function polygonArea(points: { x: number; y: number }[]) {
+  return (
+    points.reduce((area, point, index) => {
+      const next = points[(index + 1) % points.length];
+      return area + point.x * (next?.y ?? 0) - (next?.x ?? 0) * point.y;
+    }, 0) / 2
+  );
+}

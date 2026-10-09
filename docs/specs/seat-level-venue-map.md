@@ -52,8 +52,8 @@ Build a responsive, top-down interactive Soldier Field map prototype. Visitors c
 - Use PixiJS with browser WebGL for the top-down map. Do not use Mapbox GL or require a map API key.
 - React owns product state and accessible DOM controls. A narrow imperative PixiJS map module owns rendered graphics, camera transforms, pan/zoom, semantic visibility, and pointer hit testing. Keep selection and venue rules independent of canvas display objects, consistent with ADR 0001.
 - Use a single top-down orientation with pan, zoom, reset-view, and navigation back to the venue overview; map rotation is not part of the interaction.
-- Render the whole venue schematically. Supply generated row and seat detail for three representative areas: section 110 (lower sideline), section 122 (end zone), and section 430 (upper deck), with approximately 300–600 seats total.
-- Keep venue geometry separate from event-specific inventory in local JSON. Validate both at runtime with Zod. Geometry describes decks, sections, and rows; row paths generate seat positions deterministically. Event offers refer to stable seat IDs and store `pricePerSeat` and availability.
+- Render the complete supplied SVG section geometry. Supply generated row and seat detail for three representative areas: section 110 (lower sideline), section 122 (end zone), and section 430 (upper deck), with approximately 300–600 seats total.
+- Keep venue geometry separate from event-specific inventory in local assets. Parse SVG section polygons into a Zod-validated venue model. Row counts generate stable seat positions deterministically inside their parent section polygons. Event offers refer to stable seat IDs and store `pricePerSeat` and availability.
 - Keep physical `Seat` identity independent from an `Event` and its `Offer`. Treat `selected` as temporary application state, not persisted inventory or an availability status in the static event data.
 - Use synthetic event, availability, and pricing data. Overview markers show the lowest available per-seat price within the active criteria. Offer selection supports direct seat choice and adjacent groups matching the requested quantity.
 - Use an original neutral palette and original interface details. The supplied image and public seating references inform approximate orientation and section arrangement; do not reproduce or bundle SeatGeek's map, logos, marks, or proprietary assets.
@@ -71,7 +71,7 @@ Build a responsive, top-down interactive Soldier Field map prototype. Visitors c
 ## Out of Scope
 
 - Backend services, live inventory, accounts, authentication, persistence, payment, checkout, or a real reservation/seat hold.
-- Exact surveyed or complete seat-level geometry for every Soldier Field section; the whole venue is shown schematically and only three representative sections receive detailed seats.
+- Exact surveyed seat-level geometry for every Soldier Field section; the complete section map is shown, but only three representative sections receive generated seat detail.
 - First-person or panoramic seat-view imagery, a fully 3D stadium, map rotation, other venues, or production deployment.
 - Using OpenGL as a native desktop API; the browser implementation uses WebGL through PixiJS.
 - Scraping, bundling, or precisely tracing SeatGeek's proprietary map, listing, pricing, branding, or assets.

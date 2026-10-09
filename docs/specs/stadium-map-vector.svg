@@ -1,0 +1,193 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1104" height="878" viewBox="0 0 1104 878" role="img" aria-labelledby="title description">
+  <title id="title">Vector stadium seating map</title>
+  <desc id="description">A semantic vector reconstruction of the supplied stadium map with individually identified seating sections.</desc>
+  <defs>
+    <style>
+      :root { color-scheme: light; }
+      .background { fill: #f7f7f9; }
+      .stadium-outline { fill: #fff; stroke: #c9cad8; stroke-width: 5; }
+      .concourse { fill: #fff; stroke: #d0d1d6; stroke-width: 2; }
+      .section { fill: #e7e7e9; stroke: #b8b9be; stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+      .section:hover, .section:focus { fill: #cbd9e8; stroke: #657a91; }
+      .suite { fill: #eeeeef; stroke: #bebfc4; stroke-width: 1.2; vector-effect: non-scaling-stroke; }
+      .supporters { fill: #d8ebf5; stroke: #78a8c2; stroke-width: 2; }
+      .field-shell { fill: #708f43; stroke: #607d39; stroke-width: 3; }
+      .field-stripe { fill: #5e8037; }
+      .field-line { fill: none; stroke: #b8ce96; stroke-width: 2; }
+      .field-mark { fill: #f7f7f5; stroke: #a7a8a4; stroke-width: 1; }
+      .label { fill: #68696c; font: 16px Arial, sans-serif; letter-spacing: 0; text-anchor: middle; pointer-events: none; }
+      .small-label { fill: #68696c; font: 13px Arial, sans-serif; letter-spacing: 0; text-anchor: middle; pointer-events: none; }
+      .tiny-label { fill: #68696c; font: 11px Arial, sans-serif; letter-spacing: 0; text-anchor: middle; pointer-events: none; }
+      .field-label { fill: #e8e9e4; font: 15px Arial, sans-serif; letter-spacing: 0; text-anchor: middle; }
+    </style>
+  </defs>
+
+  <rect class="background" width="1104" height="878"/>
+  <path class="stadium-outline" d="M 589 49 C 832 49 1018 139 1064 315 C 1097 441 1085 636 993 747 C 906 850 708 866 585 866 C 402 866 221 836 133 731 C 66 651 64 446 93 318 C 132 145 330 49 589 49 Z"/>
+  <path class="concourse" d="M 588 112 C 807 112 958 190 1000 328 C 1032 434 1017 602 944 693 C 870 784 705 808 585 808 C 433 808 278 783 202 692 C 135 611 132 448 161 335 C 197 194 367 112 588 112 Z"/>
+
+  <g id="club-ring" aria-label="Club and suite levels">
+    <g id="section-c1" data-section="C1"><polygon class="suite" points="206,161 231,145 242,165 219,179"/><text class="small-label" x="218" y="158">C1</text></g>
+    <g id="section-c3" data-section="C3"><polygon class="suite" points="232,143 271,123 280,146 245,164"/><text class="small-label" x="255" y="139">C3</text></g>
+    <g id="section-c5" data-section="C5"><polygon class="suite" points="272,122 316,104 323,129 281,145"/><text class="small-label" x="298" y="119">C5</text></g>
+    <g id="section-c7" data-section="C7"><polygon class="suite" points="317,103 365,90 370,117 324,129"/><text class="small-label" x="343" y="106">C7</text></g>
+    <g id="section-c9" data-section="C9"><polygon class="suite" points="366,89 417,79 420,107 371,117"/><text class="small-label" x="394" y="98">C9</text></g>
+    <g id="section-c12" data-section="C12"><polygon class="suite" points="418,78 472,71 473,101 421,107"/><text class="small-label" x="446" y="91">C12</text></g>
+    <g id="section-c14" data-section="C14"><polygon class="suite" points="473,70 526,67 526,98 474,101"/><text class="small-label" x="500" y="87">C14</text></g>
+    <g id="section-c16" data-section="C16"><polygon class="suite" points="527,67 581,67 581,98 527,98"/><text class="small-label" x="554" y="84">C16</text></g>
+    <g id="section-c19" data-section="C19"><polygon class="suite" points="582,67 640,69 638,100 582,98"/><text class="small-label" x="611" y="86">C19</text></g>
+    <g id="section-c21" data-section="C21"><polygon class="suite" points="641,69 695,74 691,104 639,100"/><text class="small-label" x="667" y="89">C21</text></g>
+    <g id="section-c24" data-section="C24"><polygon class="suite" points="696,74 756,84 749,114 692,104"/><text class="small-label" x="724" y="98">C24</text></g>
+    <g id="section-c27" data-section="C27"><polygon class="suite" points="757,84 819,101 808,130 750,114"/><text class="small-label" x="785" y="111">C27</text></g>
+
+    <g id="section-a6" data-section="A6"><polygon class="suite" points="245,188 293,166 305,193 261,213"/><text class="small-label" x="274" y="191">A6</text></g>
+    <g id="section-a9" data-section="A9"><polygon class="suite" points="294,165 357,145 365,174 306,193"/><text class="small-label" x="329" y="169">A9</text></g>
+    <g id="section-a13" data-section="A13"><polygon class="suite" points="358,144 429,129 433,160 366,174"/><text class="small-label" x="396" y="151">A13</text></g>
+    <g id="section-a16" data-section="A16"><polygon class="suite" points="430,128 505,120 506,152 434,160"/><text class="small-label" x="469" y="143">A16</text></g>
+    <g id="section-a20" data-section="A20"><polygon class="suite" points="506,120 594,118 594,150 507,152"/><text class="small-label" x="550" y="139">A20</text></g>
+    <g id="section-a24" data-section="A24"><polygon class="suite" points="595,118 681,123 678,155 595,150"/><text class="small-label" x="638" y="141">A24</text></g>
+    <path class="suite" d="M 682 123 C 751 129 816 147 863 173 L 848 202 C 802 178 745 162 679 155 Z"/>
+    <text class="small-label" x="775" y="159">PRESSBOX</text>
+  </g>
+
+  <g id="upper-north" aria-label="Upper north sections">
+    <g id="section-302" data-section="302"><polygon class="section" points="294,197 337,181 349,230 312,245"/><text class="label" x="322" y="218">302</text></g>
+    <g id="section-304" data-section="304"><polygon class="section" points="340,180 385,167 394,218 351,230"/><text class="label" x="368" y="205">304</text></g>
+    <g id="section-306" data-section="306"><polygon class="section" points="389,166 435,157 441,209 397,217"/><text class="label" x="416" y="193">306</text></g>
+    <g id="section-308" data-section="308"><polygon class="section" points="440,156 489,150 492,203 445,208"/><text class="label" x="467" y="185">308</text></g>
+    <g id="section-310" data-section="310"><polygon class="section" points="494,149 544,147 544,201 497,202"/><text class="label" x="520" y="181">310</text></g>
+    <g id="section-312" data-section="312"><polygon class="section" points="549,147 601,148 599,202 549,201"/><text class="label" x="575" y="181">312</text></g>
+    <g id="section-314" data-section="314"><polygon class="section" points="606,149 659,154 654,208 604,202"/><text class="label" x="631" y="184">314</text></g>
+    <path class="section" d="M 664 155 C 724 162 782 179 829 205 L 803 251 C 760 228 711 215 659 208 Z"/>
+  </g>
+
+  <g id="middle-north" aria-label="Middle north sections">
+    <g id="section-202" data-section="202"><polygon class="section" points="304,239 350,224 361,278 323,291"/><text class="label" x="334" y="258">202</text></g>
+    <g id="section-204" data-section="204"><polygon class="section" points="351,223 399,212 406,267 362,277"/><text class="label" x="378" y="247">204</text></g>
+    <g id="section-206" data-section="206"><polygon class="section" points="400,211 449,204 453,260 408,266"/><text class="label" x="428" y="239">206</text></g>
+    <g id="section-208" data-section="208"><polygon class="section" points="450,203 502,199 503,256 455,259"/><text class="label" x="478" y="232">208</text></g>
+    <g id="section-210" data-section="210"><polygon class="section" points="504,199 556,198 556,255 505,256"/><text class="label" x="530" y="230">210</text></g>
+    <g id="section-212" data-section="212"><polygon class="section" points="558,198 611,201 608,258 558,255"/><text class="label" x="584" y="231">212</text></g>
+    <g id="section-214" data-section="214"><polygon class="section" points="613,201 667,208 660,264 610,258"/><text class="label" x="638" y="235">214</text></g>
+    <g id="section-216" data-section="216"><polygon class="section" points="669,209 725,223 711,278 662,264"/><text class="label" x="696" y="246">216</text></g>
+  </g>
+
+  <g id="lower-bowl" aria-label="Lower bowl sections">
+    <g id="section-103" data-section="103"><polygon class="section" points="349,287 396,267 418,326 379,342"/><text class="label" x="381" y="311">103</text></g>
+    <g id="section-106" data-section="106"><polygon class="section" points="397,266 450,254 462,318 419,326"/><text class="label" x="432" y="294">106</text></g>
+    <g id="section-108" data-section="108"><polygon class="section" points="451,253 507,247 512,314 463,318"/><text class="label" x="481" y="285">108</text></g>
+    <g id="section-111" data-section="111"><polygon class="section" points="508,247 566,246 566,313 513,314"/><text class="label" x="538" y="283">111</text></g>
+    <g id="section-113" data-section="113"><polygon class="section" points="568,246 626,251 618,318 568,313"/><text class="label" x="597" y="285">113</text></g>
+    <g id="section-115" data-section="115"><polygon class="section" points="628,252 686,263 669,328 620,318"/><text class="label" x="653" y="293">115</text></g>
+
+    <g id="section-154" data-section="154"><polygon class="section" points="300,334 349,315 374,356 374,393 304,399"/><text class="label" x="334" y="360">154</text></g>
+    <g id="section-152" data-section="152"><polygon class="section" points="304,401 374,395 374,444 303,445"/><text class="label" x="337" y="426">152</text></g>
+    <g id="section-151" data-section="151"><polygon class="section" points="303,447 374,446 374,493 302,489"/><text class="label" x="337" y="472">151</text></g>
+    <g id="section-149" data-section="149"><polygon class="section" points="301,491 374,495 374,540 346,570 296,550"/><text class="label" x="336" y="527">149</text></g>
+
+    <g id="section-119" data-section="119" transform="translate(105)"><polygon class="section" points="688,265 735,286 705,344 670,328"/><text class="label" x="709" y="307">119</text></g>
+    <g id="section-121-ga" data-section="121 GA" transform="translate(105)"><polygon class="supporters" points="735,288 774,318 774,388 707,388 706,344"/><text class="label" x="741" y="351">121 GA</text><text class="small-label" x="741" y="371">SUPPORTERS</text></g>
+    <g id="section-124-ga" data-section="124 GA" transform="translate(105)"><polygon class="supporters" points="707,390 774,390 774,462 735,493 707,446"/><text class="label" x="741" y="435">124 GA</text><text class="small-label" x="741" y="455">SUPPORTERS</text></g>
+    <g id="section-126" data-section="126" transform="translate(130)"><polygon class="section" points="705,448 735,494 688,524 670,510"/><text class="label" x="708" y="492">126</text></g>
+
+    <g id="section-144" data-section="144"><polygon class="section" points="346,572 374,541 430,559 414,618 351,601"/><text class="label" x="396" y="601">144</text></g>
+    <g id="section-141" data-section="141"><polygon class="section" points="432,560 493,568 490,632 416,619"/><text class="label" x="463" y="606">141</text></g>
+    <g id="section-138" data-section="138"><polygon class="section" points="495,569 557,573 557,640 492,633"/><text class="label" x="526" y="611">138</text></g>
+    <g id="section-133" data-section="133"><polygon class="section" points="559,573 638,570 650,635 559,640"/><text class="label" x="604" y="611">133</text></g>
+    <g id="section-130" data-section="130" transform="translate(70)"><polygon class="section" points="640,569 730,551 765,606 652,634"/><text class="label" x="703" y="601">130</text></g>
+  </g>
+
+  <g id="west-decks" aria-label="West seating decks">
+    <g id="section-356" data-section="356"><polygon class="section" points="180,251 243,271 263,312 170,285"/><text class="label" x="215" y="278">356</text></g>
+    <g id="section-256" data-section="256"><polygon class="section" points="169,287 263,314 294,349 158,327"/><text class="label" x="225" y="317">256</text></g>
+    <g id="section-254" data-section="254"><polygon class="section" points="157,330 296,351 299,401 151,393"/><text class="label" x="220" y="372">254</text></g>
+    <g id="section-353" data-section="353"><polygon class="section" points="149,395 299,403 300,442 146,441"/><text class="label" x="183" y="425">353</text></g>
+    <g id="section-352" data-section="352"><polygon class="section" points="146,443 300,444 299,484 145,489"/><text class="label" x="181" y="473">352</text></g>
+    <g id="section-351" data-section="351"><polygon class="section" points="145,491 299,486 296,526 148,538"/><text class="label" x="181" y="520">351</text></g>
+    <g id="section-350" data-section="350"><polygon class="section" points="149,540 295,528 286,568 157,587"/><text class="label" x="183" y="568">350</text></g>
+    <g id="section-349" data-section="349"><polygon class="section" points="158,589 285,570 267,609 174,635"/><text class="label" x="204" y="615">349</text></g>
+    <g id="section-348" data-section="348"><polygon class="section" points="175,637 266,611 241,647 191,664"/><text class="label" x="210" y="650">348</text></g>
+    <text class="small-label" transform="translate(166 318) rotate(-75)">PARTY DECK</text>
+  </g>
+
+  <g id="east-decks" aria-label="East seating decks">
+    <g id="section-218" data-section="218" transform="translate(90)"><polygon class="section" points="737,284 794,251 848,296 775,337"/><text class="label" x="792" y="292">218</text></g>
+    <g id="section-322" data-section="322" transform="translate(120)"><polygon class="section" points="775,339 872,314 884,361 775,389"/><text class="label" x="848" y="352">322</text></g>
+    <g id="section-323" data-section="323" transform="translate(120)"><polygon class="section" points="776,391 885,363 891,409 776,430"/><text class="label" x="850" y="401">323</text></g>
+    <g id="section-324" data-section="324" transform="translate(120)"><polygon class="section" points="776,432 891,411 891,457 775,473"/><text class="label" x="850" y="449">324</text></g>
+    <g id="section-325" data-section="325" transform="translate(120)"><polygon class="section" points="775,475 891,459 885,510 774,519"/><text class="label" x="848" y="497">325</text></g>
+    <g id="section-226" data-section="226" transform="translate(120)"><polygon class="section" points="738,525 774,521 884,512 866,560 793,561"/><text class="label" x="817" y="545">226</text></g>
+    <g id="section-230" data-section="230" transform="translate(105)"><polygon class="section" points="688,526 736,526 791,563 748,600 669,555"/><text class="label" x="723" y="566">230</text></g>
+    <text class="small-label" transform="translate(1002 331) rotate(74)">SKYLINE SUITE</text>
+    <g id="section-b33" data-section="B33"><polygon class="suite" points="847,150 875,169 856,195 831,178"/><text class="small-label" x="855" y="166">B33</text></g>
+    <g id="section-b35" data-section="B35"><polygon class="suite" points="878,172 902,195 880,218 859,198"/><text class="small-label" x="882" y="193">B35</text></g>
+    <g id="section-b37" data-section="B37"><polygon class="suite" points="904,199 925,225 900,245 882,221"/><text class="small-label" x="907" y="221">B37</text></g>
+  </g>
+
+  <g id="middle-south" aria-label="Middle south sections">
+    <g id="section-244" data-section="244"><polygon class="section" points="286,617 348,602 371,647 316,665"/><text class="label" x="330" y="635">244</text></g>
+    <g id="section-242" data-section="242"><polygon class="section" points="349,603 398,620 385,676 340,665"/><text class="label" x="369" y="647">242</text></g>
+    <g id="section-240" data-section="240"><polygon class="section" points="400,621 451,634 444,688 388,677"/><text class="label" x="421" y="660">240</text></g>
+    <g id="section-237" data-section="237"><polygon class="section" points="453,635 508,642 506,695 447,688"/><text class="label" x="479" y="670">237</text></g>
+    <g id="section-233" data-section="233"><polygon class="section" points="570,643 629,636 636,688 572,695"/><text class="label" x="604" y="671">233</text></g>
+  </g>
+
+  <g id="upper-south" aria-label="Upper south sections">
+    <g id="section-343" data-section="343"><polygon class="section" points="297,666 340,667 352,720 305,714"/><text class="label" x="326" y="695">343</text></g>
+    <g id="section-341" data-section="341"><polygon class="section" points="341,668 387,679 394,732 352,721"/><text class="label" x="368" y="706">341</text></g>
+    <g id="section-338" data-section="338"><polygon class="section" points="389,680 445,690 448,743 397,733"/><text class="label" x="419" y="717">338</text></g>
+    <g id="section-335" data-section="335"><polygon class="section" points="508,697 570,697 570,750 509,750"/><text class="label" x="539" y="727">335</text></g>
+    <g id="section-333" data-section="333"><polygon class="section" points="572,697 636,690 639,743 572,750"/><text class="label" x="605" y="722">333</text></g>
+    <g id="section-331" data-section="331"><polygon class="section" points="638,689 697,679 704,730 641,742"/><text class="label" x="671" y="714">331</text></g>
+
+    <g id="section-446" data-section="446"><polygon class="section" points="183,677 242,647 281,688 214,728"/><text class="label" x="232" y="688">446</text></g>
+    <g id="section-445" data-section="445"><polygon class="section" points="215,730 282,690 318,721 256,769"/><text class="label" x="267" y="731">445</text></g>
+    <g id="section-444" data-section="444"><polygon class="section" points="258,770 319,723 352,742 313,801"/><text class="label" x="305" y="766">444</text></g>
+    <g id="section-443" data-section="443"><polygon class="section" points="315,802 354,743 398,755 371,821"/><text class="label" x="357" y="786">443</text></g>
+    <g id="section-442" data-section="442"><polygon class="section" points="373,822 400,756 449,765 434,837"/><text class="label" x="410" y="801">442</text></g>
+    <g id="section-440" data-section="440"><polygon class="section" points="436,838 451,765 507,771 503,846"/><text class="label" x="474" y="809">440</text></g>
+    <g id="section-438" data-section="438"><polygon class="section" points="505,846 509,771 570,772 570,849"/><text class="label" x="539" y="813">438</text></g>
+    <g id="section-436" data-section="436"><polygon class="section" points="572,849 572,772 635,765 644,842"/><text class="label" x="607" y="811">436</text></g>
+    <g id="section-434" data-section="434"><polygon class="section" points="646,842 637,765 697,753 717,831"/><text class="label" x="676" y="801">434</text></g>
+    <g id="section-432" data-section="432"><polygon class="section" points="719,830 699,752 754,735 787,810"/><text class="label" x="744" y="787">432</text></g>
+    <g id="section-431" data-section="431"><polygon class="section" points="789,808 756,734 806,710 849,779"/><text class="label" x="803" y="757">431</text></g>
+    <g id="section-430" data-section="430"><polygon class="section" points="851,777 808,708 850,682 901,744"/><text class="label" x="855" y="724">430</text></g>
+    <g id="section-429" data-section="429"><polygon class="section" points="903,742 852,680 887,650 945,703"/><text class="label" x="900" y="690">429</text></g>
+    <g id="section-428" data-section="428"><polygon class="section" points="947,701 889,648 932,615 991,664"/><text class="label" x="948" y="654">428</text></g>
+  </g>
+
+  <g id="field" aria-label="Playing field">
+    <path class="field-shell" d="M 384 342 Q 384 327 399 327 H 778 Q 804 327 811 351 V 561 Q 804 584 778 584 H 399 Q 384 584 384 569 Z"/>
+    <clipPath id="field-clip"><path d="M 384 342 Q 384 327 399 327 H 778 Q 804 327 811 351 V 561 Q 804 584 778 584 H 399 Q 384 584 384 569 Z"/></clipPath>
+    <g clip-path="url(#field-clip)">
+      <rect class="field-stripe" x="402" y="327" width="21" height="257"/>
+      <rect class="field-stripe" x="444" y="327" width="21" height="257"/>
+      <rect class="field-stripe" x="486" y="327" width="21" height="257"/>
+      <rect class="field-stripe" x="528" y="327" width="21" height="257"/>
+      <rect class="field-stripe" x="570" y="327" width="21" height="257"/>
+      <rect class="field-stripe" x="612" y="327" width="21" height="257"/>
+      <rect class="field-stripe" x="654" y="327" width="21" height="257"/>
+      <rect class="field-stripe" x="696" y="327" width="21" height="257"/>
+      <rect class="field-stripe" x="738" y="327" width="21" height="257"/>
+      <rect class="field-stripe" x="780" y="327" width="21" height="257"/>
+    </g>
+    <rect class="field-line" x="427" y="385" width="52" height="132"/>
+    <rect class="field-line" x="427" y="423" width="20" height="56"/>
+    <rect class="field-line" x="716" y="385" width="52" height="132"/>
+    <rect class="field-line" x="748" y="423" width="20" height="56"/>
+    <line class="field-line" x1="598" y1="327" x2="598" y2="584"/>
+    <circle class="field-line" cx="598" cy="455" r="30"/>
+    <circle fill="#b8ce96" cx="598" cy="455" r="2"/>
+    <circle fill="#b8ce96" cx="462" cy="455" r="2"/>
+    <circle fill="#b8ce96" cx="733" cy="455" r="2"/>
+    <text class="field-label" x="487" y="341">FIELD</text>
+    <text class="field-label" x="676" y="341">FIELD</text>
+    <text class="field-label" x="525" y="580">VISITORS</text>
+    <text class="field-label" x="675" y="580">FLDSW</text>
+    <rect class="field-mark" x="365" y="374" width="12" height="148"/>
+    <rect class="field-mark" x="808" y="374" width="12" height="148"/>
+    <text class="label" x="365" y="383">FL9</text>
+    <text class="label" x="365" y="447">FL3</text>
+    <text class="label" x="365" y="496">FL2</text>
+  </g>
+</svg>

@@ -1,6 +1,6 @@
 import { Application, Container, Graphics, Text } from "pixi.js";
 import { generateVenueSeats, type VenueSeat } from "../domain/seats";
-import type { Venue, VenueDeck, VenueSection } from "../domain/venue";
+import type { Venue, VenueDeck } from "../domain/venue";
 
 const FIT_PADDING = 0.9;
 
@@ -63,7 +63,7 @@ export async function mountVenueMap(
   }
 
   const canvas = app.canvas;
-  canvas.setAttribute("aria-label", `Top-down schematic map of ${venue.name}`);
+  canvas.setAttribute("aria-label", `Interactive section map of ${venue.name}`);
   canvas.setAttribute("role", "img");
   canvas.style.display = "block";
   canvas.style.height = "100%";
@@ -89,7 +89,16 @@ export async function mountVenueMap(
     },
   );
 
-  const { width: worldWidth, height: worldHeight } = venue.viewBox;
+  const {
+    x: worldX,
+    y: worldY,
+    width: worldWidth,
+    height: worldHeight,
+  } = venue.viewBox;
+  const overviewCenter = {
+    x: worldX + worldWidth / 2,
+    y: worldY + worldHeight / 2,
+  };
   let fitScale = 1;
   let zoomFactor = 1;
   let draggingPointer: number | null = null;
@@ -102,6 +111,7 @@ export async function mountVenueMap(
       const focused = sectionId === focusedSectionId;
       scene.shape.alpha = focusedSectionId && !focused ? 0.38 : 1;
       scene.label.alpha = focusedSectionId && !focused ? 0.42 : 1;
+      scene.label.visible = focusedSectionId === null;
       scene.rowLayer.visible = focused && zoomFactor >= 1.45;
       scene.seatLayer.visible = focused && zoomFactor >= 1.8;
       scene.seatGraphics.forEach((graphic, seatId) => {
@@ -127,13 +137,15 @@ export async function mountVenueMap(
       );
     } else {
       viewport.position.set(
-        (width - worldWidth * fitScale * zoomFactor) / 2,
-        (height - worldHeight * fitScale * zoomFactor) / 2,
+        (width - worldWidth * fitScale * zoomFactor) / 2 -
+          worldX * viewport.scale.x,
+        (height - worldHeight * fitScale * zoomFactor) / 2 -
+          worldY * viewport.scale.y,
       );
     }
   };
 
-  const clampZoom = (value: number) => Math.min(2.8, Math.max(0.7, value));
+  const clampZoom = (value: number) => Math.min(6, Math.max(0.7, value));
   const zoomAt = (
     nextFactor: number,
     x = host.clientWidth / 2,
@@ -198,7 +210,7 @@ export async function mountVenueMap(
     focusedSectionId = sectionId;
     inspectedSeatId = null;
     updateSemanticVisibility();
-    animateTo(2.4, scene.center);
+    animateTo(4.8, scene.center);
   }
 
   function setInspectedSeat(seatId: string | null) {
@@ -210,7 +222,7 @@ export async function mountVenueMap(
     focusedSectionId = null;
     inspectedSeatId = null;
     updateSemanticVisibility();
-    animateTo(1, venue.center);
+    animateTo(1, overviewCenter);
   };
 
   const onPointerDown = (event: PointerEvent) => {
@@ -285,58 +297,40 @@ function drawVenue(
   onSectionSelect: (sectionId: string) => void,
   onSeatSelect: (seatId: string) => void,
 ) {
-  const { x: centerX, y: centerY } = venue.center;
-  const widestDeck = venue.decks.reduce((widest, deck) =>
-    deck.outerRadiusX > widest.outerRadiusX ? deck : widest,
-  );
-
-  const shadow = new Graphics()
-    .ellipse(
-      centerX,
-      centerY + 7,
-      widestDeck.outerRadiusX + 4,
-      widestDeck.outerRadiusY + 4,
+  const background = new Graphics()
+    .roundRect(
+      venue.viewBox.x,
+      venue.viewBox.y,
+      venue.viewBox.width,
+      venue.viewBox.height,
+      28,
     )
-    .fill({ color: 0xb8bec9, alpha: 0.42 });
-  viewport.addChild(shadow);
-
-  const outerShape = new Graphics()
-    .ellipse(centerX, centerY, widestDeck.outerRadiusX, widestDeck.outerRadiusY)
     .fill({ color: 0xf7f8fa })
     .stroke({ color: 0xc8cdd7, width: 2 });
-  viewport.addChild(outerShape);
+  viewport.addChild(background);
+
+  drawField(viewport, venue);
 
   const sectionScenes = new Map<string, SectionScene>();
   venue.decks.forEach((deck, deckIndex) => {
-    drawDeck(viewport, venue, deck, deckIndex, sectionScenes, onSectionSelect);
+    drawDeck(viewport, deck, deckIndex, sectionScenes, onSectionSelect);
   });
-  drawField(viewport, venue);
   drawSectionDetails(viewport, venue, sectionScenes, onSeatSelect);
   return sectionScenes;
 }
 
 function drawDeck(
   viewport: Container,
-  venue: Venue,
   deck: VenueDeck,
   deckIndex: number,
   sectionScenes: Map<string, SectionScene>,
   onSectionSelect: (sectionId: string) => void,
 ) {
-  const colors = [0xd9dde4, 0xd2d7df, 0xe0e3e8];
+  const colors = [0xdce2e9, 0xd4dbe4, 0xe1e4e8, 0xd7dde5];
   const color = colors[deckIndex % colors.length];
 
   deck.sections.forEach((section, index) => {
-    const points = annularSectorPoints(
-      venue.center.x,
-      venue.center.y,
-      deck.innerRadiusX,
-      deck.innerRadiusY,
-      deck.outerRadiusX,
-      deck.outerRadiusY,
-      section.startAngle + 0.012,
-      section.endAngle - 0.012,
-    );
+    const points = section.polygon.flatMap((point) => [point.x, point.y]);
 
     const shape = new Graphics()
       .poly(points)
@@ -347,23 +341,18 @@ function drawDeck(
     shape.on("pointertap", () => onSectionSelect(section.id));
     viewport.addChild(shape);
 
-    const midpoint = (section.startAngle + section.endAngle) / 2;
-    const radiusX = (deck.innerRadiusX + deck.outerRadiusX) / 2;
-    const radiusY = (deck.innerRadiusY + deck.outerRadiusY) / 2;
     const label = new Text({
       text: section.name,
       style: {
         fill: "#667080",
         fontFamily: "Arial, sans-serif",
-        fontSize: 13,
+        fontSize: 9,
         fontWeight: "500",
       },
     });
     label.anchor.set(0.5);
-    label.position.set(
-      venue.center.x + Math.cos(midpoint) * radiusX,
-      venue.center.y + Math.sin(midpoint) * radiusY,
-    );
+    const sectionCenter = section.label;
+    label.position.set(sectionCenter.x, sectionCenter.y);
     viewport.addChild(label);
 
     const rowLayer = new Container();
@@ -373,8 +362,8 @@ function drawDeck(
     viewport.addChild(rowLayer, seatLayer);
     sectionScenes.set(section.id, {
       center: {
-        x: venue.center.x + Math.cos(midpoint) * radiusX,
-        y: venue.center.y + Math.sin(midpoint) * radiusY,
+        x: sectionCenter.x,
+        y: sectionCenter.y,
       },
       label,
       rowLayer,
@@ -404,12 +393,12 @@ function drawSectionDetails(
 
       for (const row of section.rows) {
         const rowSeats = sectionSeats.filter((seat) => seat.rowId === row.id);
-        drawRow(scene, rowSeats, section);
+        drawRow(scene, rowSeats);
         for (const seat of rowSeats) {
           const graphic = new Graphics()
-            .circle(seat.position.x, seat.position.y, 4.2)
+            .circle(seat.position.x, seat.position.y, 0.72)
             .fill({ color: 0xffffff })
-            .stroke({ color: 0x596171, width: 1.2 });
+            .stroke({ color: 0x596171, width: 0.35 });
           graphic.eventMode = "static";
           graphic.cursor = "pointer";
           graphic.on("pointertap", () => onSeatSelect(seat.id));
@@ -428,11 +417,7 @@ function drawSectionDetails(
   );
 }
 
-function drawRow(
-  scene: SectionScene,
-  seats: VenueSeat[],
-  section: VenueSection,
-) {
+function drawRow(scene: SectionScene, seats: VenueSeat[]) {
   if (seats.length === 0) return;
   const path = new Graphics();
   seats.forEach((seat, index) => {
@@ -441,31 +426,14 @@ function drawRow(
   });
   path.stroke({ color: 0x8b93a1, alpha: 0.55, width: 1 });
   scene.rowLayer.addChild(path);
-
-  const middleSeat = seats[Math.floor(seats.length / 2)];
-  if (!middleSeat) return;
-  const label = new Text({
-    text: `R${middleSeat.rowName}`,
-    style: {
-      fill: "#4f5867",
-      fontFamily: "Arial, sans-serif",
-      fontSize: 7,
-      fontWeight: "700",
-    },
-  });
-  label.anchor.set(0.5);
-  const midpoint = (section.startAngle + section.endAngle) / 2;
-  label.position.set(
-    middleSeat.position.x + Math.cos(midpoint) * 9,
-    middleSeat.position.y + Math.sin(midpoint) * 9,
-  );
-  scene.rowLayer.addChild(label);
 }
 
 function drawField(viewport: Container, venue: Venue) {
   const { width, height, label } = venue.field;
-  const left = venue.center.x - width / 2;
-  const top = venue.center.y - height / 2;
+  const fieldCenterX = venue.center.x + venue.field.offsetX;
+  const fieldCenterY = venue.center.y + venue.field.offsetY;
+  const left = fieldCenterX - width / 2;
+  const top = fieldCenterY - height / 2;
   const field = new Graphics()
     .roundRect(left, top, width, height, 8)
     .fill({ color: 0x6c855f })
@@ -475,14 +443,26 @@ function drawField(viewport: Container, venue: Venue) {
   const markings = new Graphics();
   const inset = 13;
   for (let index = 1; index < 12; index += 1) {
-    const y = top + (height * index) / 12;
-    markings.moveTo(left + inset, y).lineTo(left + width - inset, y);
+    if (width >= height) {
+      const x = left + (width * index) / 12;
+      markings.moveTo(x, top + inset).lineTo(x, top + height - inset);
+    } else {
+      const y = top + (height * index) / 12;
+      markings.moveTo(left + inset, y).lineTo(left + width - inset, y);
+    }
   }
   markings.stroke({ color: 0xf4f5ee, alpha: 0.48, width: 1.4 });
-  markings
-    .moveTo(left + inset, venue.center.y)
-    .lineTo(left + width - inset, venue.center.y)
-    .stroke({ color: 0xffffff, alpha: 0.72, width: 2 });
+  if (width >= height) {
+    markings
+      .moveTo(fieldCenterX, top + inset)
+      .lineTo(fieldCenterX, top + height - inset)
+      .stroke({ color: 0xffffff, alpha: 0.72, width: 2 });
+  } else {
+    markings
+      .moveTo(left + inset, fieldCenterY)
+      .lineTo(left + width - inset, fieldCenterY)
+      .stroke({ color: 0xffffff, alpha: 0.72, width: 2 });
+  }
   viewport.addChild(markings);
 
   const fieldLabel = new Text({
@@ -496,39 +476,8 @@ function drawField(viewport: Container, venue: Venue) {
     },
   });
   fieldLabel.anchor.set(0.5);
-  fieldLabel.position.set(venue.center.x, top + 20);
+  fieldLabel.position.set(fieldCenterX, top + 20);
   viewport.addChild(fieldLabel);
-}
-
-function annularSectorPoints(
-  centerX: number,
-  centerY: number,
-  innerRadiusX: number,
-  innerRadiusY: number,
-  outerRadiusX: number,
-  outerRadiusY: number,
-  startAngle: number,
-  endAngle: number,
-) {
-  const steps = Math.max(4, Math.ceil((endAngle - startAngle) / 0.07));
-  const points: number[] = [];
-
-  for (let index = 0; index <= steps; index += 1) {
-    const angle = startAngle + ((endAngle - startAngle) * index) / steps;
-    points.push(
-      centerX + Math.cos(angle) * outerRadiusX,
-      centerY + Math.sin(angle) * outerRadiusY,
-    );
-  }
-  for (let index = steps; index >= 0; index -= 1) {
-    const angle = startAngle + ((endAngle - startAngle) * index) / steps;
-    points.push(
-      centerX + Math.cos(angle) * innerRadiusX,
-      centerY + Math.sin(angle) * innerRadiusY,
-    );
-  }
-
-  return points;
 }
 
 function lighten(color: number, amount: number) {

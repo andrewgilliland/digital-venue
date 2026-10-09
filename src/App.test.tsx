@@ -44,22 +44,22 @@ describe("App", () => {
     expect(
       screen.getByRole("region", { name: "Interactive venue map" }),
     ).toBeInTheDocument();
-    await user.click(screen.getByText("Browse all 36 sections"));
-    expect(screen.getAllByRole("listitem")).toHaveLength(36);
+    await user.click(screen.getByText("Browse all 166 sections"));
+    expect(screen.getAllByRole("listitem")).toHaveLength(166);
   });
 
   it("focuses a detailed section, inspects a seat, and returns to the overview", async () => {
     const user = userEvent.setup();
     render(<App />);
 
-    await user.click(screen.getByText("Browse all 36 sections"));
+    await user.click(screen.getByText("Browse all 166 sections"));
     await user.click(screen.getByRole("button", { name: "View Section 110" }));
 
     expect(
       screen.getByRole("heading", { name: "Section 110" }),
     ).toBeInTheDocument();
     expect(screen.getByText("100 Level")).toBeInTheDocument();
-    expect(map.focusSection).toHaveBeenCalledWith("lower-110");
+    expect(map.focusSection).toHaveBeenCalledWith("section-110");
 
     await user.click(
       screen.getByRole("button", {
@@ -69,7 +69,9 @@ describe("App", () => {
 
     expect(screen.getByRole("heading", { name: "Seat 1" })).toBeInTheDocument();
     expect(screen.getByText("Row 1")).toBeInTheDocument();
-    expect(map.setInspectedSeat).toHaveBeenCalledWith("lower-110-row-1-seat-1");
+    expect(map.setInspectedSeat).toHaveBeenCalledWith(
+      "section-110-row-1-seat-1",
+    );
 
     await user.click(
       screen.getByRole("button", { name: "Back to venue overview" }),
@@ -92,12 +94,12 @@ describe("App", () => {
     );
     render(<App />);
 
-    await user.click(screen.getByText("Browse all 36 sections"));
+    await user.click(screen.getByText("Browse all 166 sections"));
     await user.click(screen.getByRole("button", { name: "View Section 110" }));
     expect(map.focusSection).not.toHaveBeenCalled();
 
     await act(async () => resolveMap(map));
 
-    expect(map.focusSection).toHaveBeenCalledWith("lower-110");
+    expect(map.focusSection).toHaveBeenCalledWith("section-110");
   });
 });

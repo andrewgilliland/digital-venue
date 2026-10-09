@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import soldierFieldData from "./data/venues/soldier-field.json";
+import { createSoldierFieldVenue } from "./data/venues/soldierField";
 import { generateVenueSeats, type VenueSeat } from "./domain/seats";
 import { VenueSchema } from "./domain/venue";
 import { mountVenueMap, type VenueMapController } from "./map/VenueMap";
 
-const venueResult = VenueSchema.safeParse(soldierFieldData);
+const venueResult = VenueSchema.safeParse(createSoldierFieldVenue());
 
 function App() {
   const mapHost = useRef<HTMLDivElement>(null);
@@ -204,7 +204,7 @@ function App() {
             </div>
           </div>
 
-          <div className="absolute bottom-4 left-4 flex items-center gap-3 sm:bottom-6 sm:left-6">
+          <div className="absolute bottom-4 left-4 z-10 flex flex-wrap items-center gap-3 sm:bottom-6 sm:left-6">
             <button
               className="rounded-xl border border-white/80 bg-white/90 px-3 py-2 text-xs font-semibold text-neutral-700 shadow-sm backdrop-blur transition hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
               onClick={() => mapController.current?.resetView()}
@@ -413,7 +413,7 @@ function App() {
                   Drag to move around · scroll or use + / − to zoom
                 </p>
                 <p className="mt-2 text-[10px] text-neutral-400">
-                  Schematic venue layout · prototype data
+                  SVG section geometry · prototype seat data
                 </p>
               </div>
             </>
