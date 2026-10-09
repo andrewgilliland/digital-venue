@@ -10,12 +10,14 @@
     "height": 760
   },
   "center": {
-    "x": 500,
+    "x": 530,
     "y": 380
   },
   "field": {
     "width": 420,
-    "height": 210,
+    "height": 236,
+    "offsetX": -30,
+    "offsetY": 14,
     "label": "FIELD"
   },
   "decks": [
@@ -23,70 +25,70 @@
       "id": "upper",
       "name": "Upper Deck",
       "shortName": "Upper",
-      "innerRadiusX": 364,
+      "innerRadiusX": 328,
       "innerRadiusY": 358,
-      "outerRadiusX": 480,
+      "outerRadiusX": 440,
       "outerRadiusY": 372,
       "sections": [
         {
           "id": "upper-101",
           "name": "101",
           "startAngle": -3.1416,
-          "endAngle": -2.618
+          "endAngle": -2.7
         },
         {
           "id": "upper-102",
           "name": "102",
-          "startAngle": -2.618,
-          "endAngle": -2.0944
+          "startAngle": -2.7,
+          "endAngle": -2.26
         },
         {
           "id": "upper-103",
           "name": "103",
-          "startAngle": -2.0944,
-          "endAngle": -1.5708
+          "startAngle": -2.26,
+          "endAngle": -1.82
         },
         {
           "id": "upper-104",
           "name": "104",
-          "startAngle": -1.5708,
-          "endAngle": -1.0472
+          "startAngle": -1.82,
+          "endAngle": -1.38
         },
         {
           "id": "upper-105",
           "name": "105",
-          "startAngle": -1.0472,
-          "endAngle": -0.5236
+          "startAngle": -1.38,
+          "endAngle": -0.94
         },
         {
           "id": "upper-106",
           "name": "106",
-          "startAngle": -0.5236,
-          "endAngle": 0.0
+          "startAngle": -0.94,
+          "endAngle": -0.5
         },
         {
           "id": "upper-107",
           "name": "107",
-          "startAngle": 0.0,
-          "endAngle": 0.5236
+          "startAngle": -0.5,
+          "endAngle": -0.06
         },
         {
           "id": "upper-108",
           "name": "108",
-          "startAngle": 0.5236,
-          "endAngle": 1.0472
+          "startAngle": -0.06,
+          "endAngle": 0.38
         },
         {
           "id": "upper-109",
           "name": "109",
-          "startAngle": 1.0472,
-          "endAngle": 1.5708
+          "startAngle": 0.38,
+          "endAngle": 0.82
         },
         {
           "id": "upper-430",
           "name": "430",
-          "startAngle": 1.5708,
-          "endAngle": 2.0944,
+          "startAngle": 0.82,
+          "endAngle": 1.26,
           "rows": [
             {
               "id": "upper-430-row-1",
@@ -94,10 +96,10 @@
               "seatCount": 24,
               "path": {
                 "type": "arc",
-                "radiusX": 376,
+                "radiusX": 338,
                 "radiusY": 360,
-                "startAngle": 1.62,
-                "endAngle": 2.04
+                "startAngle": 0.86,
+                "endAngle": 1.22
               }
             },
             {
@@ -106,10 +108,10 @@
               "seatCount": 25,
               "path": {
                 "type": "arc",
-                "radiusX": 396,
+                "radiusX": 356,
                 "radiusY": 362,
-                "startAngle": 1.62,
-                "endAngle": 2.04
+                "startAngle": 0.86,
+                "endAngle": 1.22
               }
             },
             {
@@ -118,10 +120,10 @@
               "seatCount": 26,
               "path": {
                 "type": "arc",
-                "radiusX": 416,
+                "radiusX": 374,
                 "radiusY": 364,
-                "startAngle": 1.62,
-                "endAngle": 2.04
+                "startAngle": 0.86,
+                "endAngle": 1.22
               }
             },
             {
@@ -130,10 +132,10 @@
               "seatCount": 27,
               "path": {
                 "type": "arc",
-                "radiusX": 436,
+                "radiusX": 392,
                 "radiusY": 366,
-                "startAngle": 1.62,
-                "endAngle": 2.04
+                "startAngle": 0.86,
+                "endAngle": 1.22
               }
             },
             {
@@ -142,10 +144,10 @@
               "seatCount": 28,
               "path": {
                 "type": "arc",
-                "radiusX": 456,
+                "radiusX": 410,
                 "radiusY": 369,
-                "startAngle": 1.62,
-                "endAngle": 2.04
+                "startAngle": 0.86,
+                "endAngle": 1.22
               }
             }
           ]
@@ -153,13 +155,13 @@
         {
           "id": "upper-111",
           "name": "111",
-          "startAngle": 2.0944,
-          "endAngle": 2.618
+          "startAngle": 1.26,
+          "endAngle": 2.2
         },
         {
           "id": "upper-112",
           "name": "112",
-          "startAngle": 2.618,
+          "startAngle": 2.2,
           "endAngle": 3.1416
         }
       ]
@@ -168,9 +170,9 @@
       "id": "lower",
       "name": "100 Level",
       "shortName": "100",
-      "innerRadiusX": 284,
+      "innerRadiusX": 256,
       "innerRadiusY": 344,
-      "outerRadiusX": 360,
+      "outerRadiusX": 324,
       "outerRadiusY": 354,
       "sections": [
         {
@@ -203,7 +205,7 @@
               "seatCount": 18,
               "path": {
                 "type": "arc",
-                "radiusX": 294,
+                "radiusX": 265,
                 "radiusY": 345,
                 "startAngle": -1.52,
                 "endAngle": -1.1
@@ -215,7 +217,7 @@
               "seatCount": 19,
               "path": {
                 "type": "arc",
-                "radiusX": 308,
+                "radiusX": 277,
                 "radiusY": 347,
                 "startAngle": -1.52,
                 "endAngle": -1.1
@@ -227,7 +229,7 @@
               "seatCount": 20,
               "path": {
                 "type": "arc",
-                "radiusX": 323,
+                "radiusX": 291,
                 "radiusY": 349,
                 "startAngle": -1.52,
                 "endAngle": -1.1
@@ -239,7 +241,7 @@
               "seatCount": 21,
               "path": {
                 "type": "arc",
-                "radiusX": 338,
+                "radiusX": 304,
                 "radiusY": 351,
                 "startAngle": -1.52,
                 "endAngle": -1.1
@@ -251,7 +253,7 @@
               "seatCount": 22,
               "path": {
                 "type": "arc",
-                "radiusX": 353,
+                "radiusX": 318,
                 "radiusY": 353,
                 "startAngle": -1.52,
                 "endAngle": -1.1
@@ -283,7 +285,7 @@
               "seatCount": 20,
               "path": {
                 "type": "arc",
-                "radiusX": 294,
+                "radiusX": 265,
                 "radiusY": 345,
                 "startAngle": 0.05,
                 "endAngle": 0.48
@@ -295,7 +297,7 @@
               "seatCount": 21,
               "path": {
                 "type": "arc",
-                "radiusX": 309,
+                "radiusX": 278,
                 "radiusY": 347,
                 "startAngle": 0.05,
                 "endAngle": 0.48
@@ -307,7 +309,7 @@
               "seatCount": 22,
               "path": {
                 "type": "arc",
-                "radiusX": 324,
+                "radiusX": 292,
                 "radiusY": 349,
                 "startAngle": 0.05,
                 "endAngle": 0.48
@@ -319,7 +321,7 @@
               "seatCount": 23,
               "path": {
                 "type": "arc",
-                "radiusX": 339,
+                "radiusX": 305,
                 "radiusY": 351,
                 "startAngle": 0.05,
                 "endAngle": 0.48
@@ -331,7 +333,7 @@
               "seatCount": 24,
               "path": {
                 "type": "arc",
-                "radiusX": 354,
+                "radiusX": 319,
                 "radiusY": 353,
                 "startAngle": 0.05,
                 "endAngle": 0.48
@@ -375,9 +377,9 @@
       "id": "club",
       "name": "Club Level",
       "shortName": "Club",
-      "innerRadiusX": 232,
+      "innerRadiusX": 209,
       "innerRadiusY": 322,
-      "outerRadiusX": 280,
+      "outerRadiusX": 252,
       "outerRadiusY": 340,
       "sections": [
         {
